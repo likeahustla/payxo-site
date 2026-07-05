@@ -135,12 +135,17 @@
   .term-bar i:nth-child(1){background:#FF5F57}.term-bar i:nth-child(2){background:#FEBC2E}.term-bar i:nth-child(3){background:#28C840}
   .term-title{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-faint)}
   .feed{padding:8px 0;height:342px;overflow:hidden;position:relative;mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent)}
-  .feed-track{display:flex;flex-direction:column;animation:scrollup 20s linear infinite}
+  .feed-track{display:flex;flex-direction:column;animation:scrollup 26s linear infinite}
   .feed-row{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;border-bottom:1px solid var(--line-soft)}
   .feed-row .l{display:flex;align-items:center;gap:11px;color:var(--ink-dim)}
   .feed-row .tag{width:8px;height:8px;border-radius:2px}
   .feed-row .amt{color:var(--neon);font-weight:500}
   .feed-row .ok{color:var(--ink-faint);font-size:11px;display:flex;align-items:center;gap:5px}
+  .brand-row{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line-soft);transition:background .2s}
+  .brand-row:hover{background:rgba(255,255,255,.02)}
+  .brand-row .bico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;font-size:17px;border:1px solid var(--line-soft)}
+  .brand-row .bname{font-size:14.5px;color:var(--ink);font-weight:500;letter-spacing:-.2px}
+  .brand-row .bcat{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-faint);white-space:nowrap}
   @keyframes scrollup{to{transform:translateY(-50%)}}
 
   /* section shell */
@@ -341,7 +346,7 @@
   <div class="terminal reveal in">
     <div class="term-bar">
       <i></i><i></i><i></i>
-      <span class="term-title">payxo · live_feed</span>
+      <span class="term-title">payxo · каталог брендов</span>
     </div>
     <div class="feed">
       <div class="feed-track" id="feed"></div>
@@ -620,26 +625,32 @@
 </footer>
 
 <script>
-  // live feed generator
+  // scrolling brand catalog
   (function(){
-    const items=[
-      ['Steam 25$','#CBF23D'],['ChatGPT Plus','#CBF23D'],['App Store 1000₽','#FFB454'],
-      ['Higgsfield','#CBF23D'],['PlayStation','#CBF23D'],['Виртуальная карта','#CBF23D'],
-      ['Netflix','#FFB454'],['Roblox 2000','#CBF23D'],['Canva Pro','#CBF23D'],
-      ['Telegram Premium','#CBF23D'],['Xbox Game Pass','#CBF23D'],['iTunes 500₽','#FFB454'],
-      ['Midjourney','#CBF23D'],['Google Play','#FFB454'],['Binance','#FFB454']
+    const brands=[
+      ['Steam','🎮','#CBF23D','гифт-карта'],
+      ['ChatGPT Plus','🤖','#CBF23D','подписка'],
+      ['App Store','🍎','#FFB454','пополнение'],
+      ['Higgsfield','🎬','#CBF23D','подписка'],
+      ['PlayStation','🕹️','#7DB4FF','гифт-карта'],
+      ['Виртуальная карта USD','💳','#CBF23D','карта'],
+      ['Netflix','🟥','#FF7A72','подписка'],
+      ['Roblox','🧱','#CBF23D','гифт-карта'],
+      ['Canva Pro','🎨','#CBF23D','подписка'],
+      ['Telegram Premium','✈️','#CBF23D','подписка'],
+      ['Xbox Game Pass','❎','#CBF23D','гифт-карта'],
+      ['Google Play','▶️','#FFB454','пополнение'],
+      ['Midjourney','🖼️','#CBF23D','подписка'],
+      ['Spotify','🎵','#CBF23D','подписка'],
+      ['Amazon','📦','#EAF2F0','покупки'],
+      ['Binance','🟡','#FFB454','пополнение']
     ];
-    const cities=['msk','spb','ekb','kzn','nsk','rnd','sochi','ufa','sam','krd'];
     const feed=document.getElementById('feed');
-    function amt(){return (Math.floor(Math.random()*46)+4)}
-    let html='';
     function rows(){
       let s='';
-      for(let i=0;i<14;i++){
-        const it=items[Math.floor(Math.random()*items.length)];
-        const c=cities[Math.floor(Math.random()*cities.length)];
-        s+=`<div class="feed-row"><div class="l"><span class="tag" style="background:${it[1]}"></span>${it[0]}</div><div style="display:flex;gap:14px;align-items:center"><span class="ok">✓ ${c}</span><span class="amt">+${amt()}$</span></div></div>`;
-      }
+      brands.forEach(b=>{
+        s+=`<div class="brand-row"><div class="bico" style="background:${b[2]}1A;color:${b[2]}"><span>${b[1]}</span></div><div class="bname">${b[0]}</div><div class="bcat">${b[3]}</div></div>`;
+      });
       return s;
     }
     const block=rows();
