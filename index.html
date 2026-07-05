@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PAYXO — оплати что угодно_</title>
+<meta name="description" content="Гифт-карты, виртуальные карты и подписки в одном Telegram-боте. Steam, App Store, ChatGPT, Higgsfield, Canva и не только." />
+<meta property="og:title" content="PAYXO — оплати что угодно_" />
+<meta property="og:description" content="Гифт-карты, виртуальные карты и подписки в одном Telegram-боте." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#151515;
+    --bg-soft:#1A1A1A;
+    --panel:#1E1E1E;
+    --line:#333333;
+    --line-soft:#262626;
+    --ink:#F0F1EC;
+    --ink-dim:#9A9A94;
+    --ink-faint:#606058;
+    --neon:#CBF23D;        /* кислотный лайм — основной акцент */
+    --neon-deep:#A5C900;
+    --violet:#CBF23D;      /* второй акцент = тот же лайм */
+    --violet-deep:#A5C900;
+    --amber:#FFB454;
+    --radius:14px;
+    --maxw:1160px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ambient background */
+  .aura{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .aura::before,.aura::after{
+    content:"";position:absolute;border-radius:50%;filter:blur(120px);opacity:.5;
+  }
+  .aura::before{
+    width:620px;height:620px;left:-160px;top:-180px;
+    background:radial-gradient(circle,rgba(203,242,61,.20),transparent 65%);
+    animation:drift1 22s ease-in-out infinite;
+  }
+  .aura::after{
+    width:560px;height:560px;right:-160px;top:180px;
+    background:radial-gradient(circle,rgba(203,242,61,.14),transparent 65%);
+    animation:drift2 26s ease-in-out infinite;
+  }
+  @keyframes drift1{50%{transform:translate(60px,80px) scale(1.1)}}
+  @keyframes drift2{50%{transform:translate(-70px,-50px) scale(1.08)}}
+  .grid-overlay{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+    background-size:52px 52px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 80%);
+  }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:2}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,9,12,.72);border-bottom:1px solid var(--line-soft)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:20px;letter-spacing:-.5px;display:flex;align-items:center;gap:2px}
+  .logo b{color:var(--neon)}
+  .logo .cursor{width:9px;height:18px;background:var(--neon);display:inline-block;margin-left:2px;animation:blink 1.1s steps(1) infinite;border-radius:1px}
+  @keyframes blink{50%{opacity:0}}
+  .nav-links{display:flex;gap:30px;font-size:14px;color:var(--ink-dim)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border:1px solid var(--line);border-radius:9px;color:var(--ink);transition:.2s;background:var(--panel)}
+  .nav-cta:hover{border-color:var(--neon);color:var(--neon);box-shadow:0 0 0 1px rgba(203,242,61,.2)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* hero */
+  .hero{padding:74px 0 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  @media(max-width:900px){.hero{grid-template-columns:1fr;padding:52px 0 24px}}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--neon);border:1px solid rgba(203,242,61,.28);background:rgba(203,242,61,.05);padding:6px 13px;border-radius:100px;margin-bottom:26px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px var(--neon);animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.4;transform:scale(.8)}}
+  h1{font-size:clamp(40px,6.4vw,72px);line-height:1.02;font-weight:700;letter-spacing:-2.5px}
+  h1 .grad{background:linear-gradient(100deg,var(--neon),#F0F1EC);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1 .u{position:relative}
+  h1 .u::after{content:"_";color:var(--neon);animation:blink 1.1s steps(1) infinite}
+  .sub{margin-top:24px;font-size:18px;color:var(--ink-dim);max-width:490px;line-height:1.6}
+  .sub b{color:var(--ink);font-weight:500}
+  .cta-row{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:11px;font-weight:600;font-size:16px;
+    padding:15px 26px;border-radius:12px;color:#04140C;
+    background:linear-gradient(180deg,var(--neon),var(--neon-deep));
+    box-shadow:0 8px 30px rgba(203,242,61,.28),inset 0 1px 0 rgba(255,255,255,.35);
+    transition:transform .18s,box-shadow .18s;position:relative;overflow:hidden;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(203,242,61,.42),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn-primary svg{transition:transform .2s}
+  .btn-primary:hover svg{transform:translateX(3px)}
+  .btn-ghost{display:inline-flex;align-items:center;gap:9px;font-size:15px;padding:15px 22px;border-radius:12px;color:var(--ink-dim);border:1px solid var(--line);transition:.2s;font-family:'JetBrains Mono',monospace;font-size:14px}
+  .btn-ghost:hover{border-color:var(--line);color:var(--ink);background:var(--panel)}
+  .trust{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap}
+  .trust div{display:flex;flex-direction:column;gap:2px}
+  .trust b{font-family:'JetBrains Mono',monospace;font-size:21px;color:var(--ink)}
+  .trust span{font-size:12.5px;color:var(--ink-faint)}
+
+  /* hero brand strip */
+  .hero-brands{margin-top:30px;padding-top:26px;border-top:1px solid var(--line-soft)}
+  .hero-brands .hb-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-faint);letter-spacing:1px;margin-bottom:14px;display:block}
+  .hb-row{display:flex;flex-wrap:wrap;gap:9px}
+  .hb-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border:1px solid var(--line-soft);border-radius:9px;background:var(--panel);font-size:13px;color:var(--ink-dim);transition:.2s}
+  .hb-pill:hover{border-color:var(--neon);color:var(--ink)}
+  .hb-pill svg,.hb-pill .em{width:16px;height:16px;flex-shrink:0}
+  .hb-pill .em{display:grid;place-items:center;font-size:14px}
+  .hb-more{display:inline-flex;align-items:center;padding:7px 12px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--neon);background:rgba(203,242,61,.08);border:1px solid rgba(203,242,61,.25)}
+
+  /* hero terminal / live feed */
+  .terminal{
+    background:linear-gradient(180deg,var(--panel),var(--bg-soft));
+    border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative;
+  }
+  .term-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line-soft);background:rgba(255,255,255,.015)}
+  .term-bar i{width:11px;height:11px;border-radius:50%;display:block}
+  .term-bar i:nth-child(1){background:#FF5F57}.term-bar i:nth-child(2){background:#FEBC2E}.term-bar i:nth-child(3){background:#28C840}
+  .term-title{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-faint)}
+  .feed{padding:8px 0;height:342px;overflow:hidden;position:relative;mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent)}
+  .feed-track{display:flex;flex-direction:column;animation:scrollup 20s linear infinite}
+  .feed-row{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;border-bottom:1px solid var(--line-soft)}
+  .feed-row .l{display:flex;align-items:center;gap:11px;color:var(--ink-dim)}
+  .feed-row .tag{width:8px;height:8px;border-radius:2px}
+  .feed-row .amt{color:var(--neon);font-weight:500}
+  .feed-row .ok{color:var(--ink-faint);font-size:11px;display:flex;align-items:center;gap:5px}
+  @keyframes scrollup{to{transform:translateY(-50%)}}
+
+  /* section shell */
+  section{padding:88px 0;position:relative;z-index:2}
+  .sec-head{margin-bottom:44px;max-width:620px}
+  .sec-tag{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--neon);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;display:block}
+  .sec-head h2{font-size:clamp(28px,4vw,42px);letter-spacing:-1.4px;line-height:1.08;font-weight:700}
+  .sec-head p{margin-top:15px;color:var(--ink-dim);font-size:16.5px;line-height:1.6}
+
+  /* audience cards */
+  .aud{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:840px){.aud{grid-template-columns:1fr}}
+  .aud-card{
+    background:linear-gradient(180deg,var(--panel),var(--bg-soft));
+    border:1px solid var(--line-soft);border-radius:16px;padding:26px;position:relative;overflow:hidden;
+    transition:transform .25s,border-color .25s;
+  }
+  .aud-card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(203,242,61,.08),transparent 40%);opacity:0;transition:opacity .3s}
+  .aud-card:hover{transform:translateY(-4px);border-color:var(--line)}
+  .aud-card:hover::before{opacity:1}
+  .aud-ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:20px;font-size:22px;border:1px solid var(--line)}
+  .aud-card h3{font-size:19px;margin-bottom:9px;letter-spacing:-.4px}
+  .aud-card p{color:var(--ink-dim);font-size:14.5px;line-height:1.55}
+  .aud-card .want{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-faint);display:flex;align-items:center;gap:8px}
+  .aud-card .want b{color:var(--neon);font-weight:500}
+
+  /* catalog marquee */
+  .marquee-wrap{position:relative;overflow:hidden;padding:14px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .marquee{display:flex;gap:14px;width:max-content;animation:slide 32s linear infinite}
+  .marquee.rev{animation-direction:reverse;margin-top:14px}
+  .chip{display:flex;align-items:center;gap:10px;padding:11px 18px;background:var(--panel);border:1px solid var(--line-soft);border-radius:100px;font-size:14.5px;color:var(--ink-dim);white-space:nowrap}
+  .chip b{width:7px;height:7px;border-radius:50%}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+  @media(max-width:840px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;padding:28px;background:linear-gradient(180deg,var(--panel),transparent);border:1px solid var(--line-soft);border-radius:16px}
+  .step .n{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--neon);border:1px solid rgba(203,242,61,.3);width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:18px}
+  .step h3{font-size:18px;margin-bottom:8px;letter-spacing:-.4px}
+  .step p{color:var(--ink-dim);font-size:14.5px;line-height:1.55}
+  .step .line{position:absolute;top:45px;right:-10px;width:20px;height:1px;background:var(--line);display:none}
+  @media(min-width:841px){.step:not(:last-child) .line{display:block}}
+
+  /* why grid */
+  .why{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:900px){.why{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.why{grid-template-columns:1fr}}
+  .why-item{padding:24px;border:1px solid var(--line-soft);border-radius:14px;background:var(--bg-soft)}
+  .why-item .i{font-size:20px;margin-bottom:14px}
+  .why-item h4{font-size:15.5px;margin-bottom:7px;letter-spacing:-.3px}
+  .why-item p{font-size:13.5px;color:var(--ink-dim);line-height:1.5}
+
+  /* gift card showcase */
+  .cards-showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:840px){.cards-showcase{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.cards-showcase{grid-template-columns:1fr}}
+  .gcard{
+    aspect-ratio:1.6/1;border-radius:16px;padding:20px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;
+    border:1px solid rgba(255,255,255,.09);cursor:default;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s;
+    box-shadow:0 12px 30px rgba(0,0,0,.4);
+  }
+  .gcard:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 24px 50px rgba(0,0,0,.55)}
+  .gcard .sheen{position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.14) 48%,transparent 62%);transform:translateX(-100%);transition:transform .6s}
+  .gcard:hover .sheen{transform:translateX(100%)}
+  .gcard .top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+  .gcard .brand{font-weight:700;font-size:17px;letter-spacing:-.4px;display:flex;align-items:center;gap:9px}
+  .gcard .chipico{width:30px;height:22px;border-radius:5px;background:linear-gradient(135deg,#F5D485,#B8862F);position:relative;overflow:hidden}
+  .gcard .chipico::after{content:"";position:absolute;inset:4px;border:1px solid rgba(0,0,0,.25);border-radius:2px}
+  .gcard .val{position:relative;z-index:2;font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700}
+  .gcard .foot{position:relative;z-index:2;font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7;letter-spacing:1px}
+  .gcard .glow{position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(60px);opacity:.5;right:-40px;bottom:-60px}
+
+  /* virtual card 3D */
+  .vcard-sec{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  @media(max-width:900px){.vcard-sec{grid-template-columns:1fr;gap:36px}}
+  .vcard-stage{perspective:1400px;display:flex;justify-content:center;padding:20px}
+  .vcard{
+    width:100%;max-width:400px;aspect-ratio:1.586/1;border-radius:20px;position:relative;
+    background:linear-gradient(135deg,#0F1922,#060A0E 60%);
+    border:1px solid rgba(198,255,61,.25);
+    box-shadow:0 30px 70px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08),0 0 60px rgba(198,255,61,.08);
+    padding:26px;color:#EAF2F0;overflow:hidden;
+    transform:rotateY(-14deg) rotateX(6deg);transition:transform .4s;
+    animation:floatcard 6s ease-in-out infinite;
+  }
+  @keyframes floatcard{50%{transform:rotateY(-10deg) rotateX(4deg) translateY(-8px)}}
+  .vcard::before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(198,255,61,.22),transparent 60%);top:-120px;right:-80px}
+  .vcard::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(203,242,61,.18),transparent 60%);bottom:-100px;left:-60px}
+  .vcard-in{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+  .vcard-top{display:flex;align-items:flex-start;justify-content:space-between}
+  .vcard-top .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--neon);letter-spacing:2px}
+  .vcard-top .net{font-weight:700;font-size:15px;font-style:italic;letter-spacing:-.5px}
+  .vchip{width:44px;height:33px;border-radius:6px;background:linear-gradient(135deg,#F5D485,#B8862F);position:relative;margin:6px 0}
+  .vchip::before{content:"";position:absolute;inset:5px;border:1px solid rgba(0,0,0,.3);border-radius:3px}
+  .vchip::after{content:"";position:absolute;left:50%;top:5px;bottom:5px;width:1px;background:rgba(0,0,0,.3)}
+  .vnum{font-family:'JetBrains Mono',monospace;font-size:19px;letter-spacing:3px;margin-top:auto}
+  .vbottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px}
+  .vbottom .k{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-faint);letter-spacing:1px;display:block;margin-bottom:3px}
+  .vbottom .v{font-family:'JetBrains Mono',monospace;font-size:13px}
+  .vlist{display:flex;flex-direction:column;gap:16px}
+  .vlist-item{display:flex;gap:14px;align-items:flex-start}
+  .vlist-item .ci{width:38px;height:38px;border-radius:10px;flex-shrink:0;display:grid;place-items:center;border:1px solid var(--line);font-size:18px;background:var(--panel)}
+  .vlist-item h4{font-size:16px;margin-bottom:4px;letter-spacing:-.3px}
+  .vlist-item p{font-size:14px;color:var(--ink-dim);line-height:1.5}
+
+  /* brand logo wall */
+  .logowall{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  @media(max-width:840px){.logowall{grid-template-columns:repeat(4,1fr)}}
+  @media(max-width:520px){.logowall{grid-template-columns:repeat(3,1fr)}}
+  .logo-tile{aspect-ratio:1.4/1;border:1px solid var(--line-soft);border-radius:14px;background:var(--bg-soft);display:grid;place-items:center;transition:.25s;position:relative;overflow:hidden}
+  .logo-tile:hover{border-color:var(--neon);background:var(--panel);transform:translateY(-3px)}
+  .logo-tile svg{width:64%;height:44%;opacity:.9;transition:opacity .25s}
+  .logo-tile:hover svg{opacity:1}
+
+  /* final CTA */
+  .final{text-align:center;padding:96px 24px;position:relative;z-index:2}
+  .final-card{max-width:760px;margin:0 auto;padding:56px 40px;border-radius:26px;border:1px solid var(--line);position:relative;overflow:hidden;background:linear-gradient(180deg,var(--panel),var(--bg-soft))}
+  .final-card::before{content:"";position:absolute;inset:0;background:radial-gradient(600px circle at 50% -10%,rgba(203,242,61,.16),transparent 55%)}
+  .final-card>*{position:relative;z-index:2}
+  .final h2{font-size:clamp(30px,4.6vw,46px);letter-spacing:-1.6px;line-height:1.06}
+  .final h2 .grad{background:linear-gradient(100deg,var(--neon),#F0F1EC);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .final p{color:var(--ink-dim);margin-top:16px;font-size:17px}
+  .final .cta-row{justify-content:center;margin-top:34px}
+
+  /* footer */
+  footer{border-top:1px solid var(--line-soft);padding:40px 0;position:relative;z-index:2}
+  .foot-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  .foot-in .logo{font-size:17px}
+  .foot-links{display:flex;gap:24px;font-size:13.5px;color:var(--ink-faint);font-family:'JetBrains Mono',monospace}
+  .foot-links a:hover{color:var(--neon)}
+  .foot-note{color:var(--ink-faint);font-size:12.5px;margin-top:18px;font-family:'JetBrains Mono',monospace}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="aura"></div>
+<div class="grid-overlay"></div>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="logo">PAY<b>XO</b><span class="cursor"></span></div>
+    <div class="nav-links">
+      <a href="#giftcards">Гифт-карты</a>
+      <a href="#virtual">Карты</a>
+      <a href="#catalog">Каталог</a>
+      <a href="#how">Как это работает</a>
+    </div>
+    <a class="nav-cta" href="https://t.me/payxo_bot" target="_blank" rel="noopener">Открыть бота →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="wrap hero">
+  <div class="reveal in">
+    <span class="eyebrow"><span class="dot"></span>онлайн 24/7 · оплата по СБП за минуту</span>
+    <h1>Оплати что угодно<br><span class="grad">прямо в Telegram</span><span class="u"></span></h1>
+    <p class="sub">Гифт-карты, <b>виртуальные карты для зарубежных сервисов</b> и подписки — в одном боте. От Steam до подписки на ChatGPT, Higgsfield и Canva.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://t.me/payxo_bot" target="_blank" rel="noopener">
+        Перейти в бота
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn-ghost" href="#catalog">// что можно купить</a>
+    </div>
+    <div class="trust">
+      <div><b>1600+</b><span>брендов и сервисов</span></div>
+      <div><b>~60 сек</b><span>от оплаты до кода</span></div>
+      <div><b>24/7</b><span>автоматическая выдача</span></div>
+    </div>
+    <div class="hero-brands">
+      <span class="hb-label">// среди 1600+ брендов</span>
+      <div class="hb-row">
+        <span class="hb-pill"><span class="em">🎮</span>Steam</span>
+        <span class="hb-pill"><span class="em"></span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2 1.6-2.9 1.6-3-.9-1.3-2.2-1.5-2.7-1.5-1.1-.1-2.2.7-2.8.7s-1.5-.6-2.4-.6c-1.3 0-2.4.7-3 1.9-1.3 2.2-.3 5.6.9 7.4.6.9 1.4 2 2.3 1.9.9 0 1.3-.6 2.4-.6s1.4.6 2.4.6 1.7-.9 2.3-1.8c.7-1 1-2 1-2.1 0 0-2-.8-2-3zm-1.9-5.5c.5-.6.8-1.5.7-2.4-.7 0-1.6.5-2.2 1.1-.5.6-.9 1.4-.8 2.3.9 0 1.7-.5 2.3-1z"/></svg>App Store</span>
+        <span class="hb-pill"><span class="em">🎯</span>ChatGPT</span>
+        <span class="hb-pill"><span class="em">🎬</span>Higgsfield</span>
+        <span class="hb-pill"><span class="em">🎨</span>Canva</span>
+        <span class="hb-pill"><span class="em">🕹️</span>PlayStation</span>
+        <span class="hb-pill"><span class="em">🟥</span>Netflix</span>
+        <span class="hb-pill"><span class="em">💳</span>Виртуальные карты</span>
+        <span class="hb-more">+1590 →</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- live transaction feed = signature element -->
+  <div class="terminal reveal in">
+    <div class="term-bar">
+      <i></i><i></i><i></i>
+      <span class="term-title">payxo · live_feed</span>
+    </div>
+    <div class="feed">
+      <div class="feed-track" id="feed"></div>
+    </div>
+  </div>
+</header>
+
+<!-- AUDIENCE -->
+<section id="audience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">// для кого</span>
+      <h2>Один бот — под любую задачу</h2>
+      <p>Неважно, качаешь ты игры, генеришь видео нейросетями или просто пополняешь баланс — всё оплачивается в пару тапов.</p>
+    </div>
+    <div class="aud">
+      <div class="aud-card reveal">
+        <div class="aud-ico" style="color:var(--neon)">🎮</div>
+        <h3>Геймерам</h3>
+        <p>Steam, PlayStation, Xbox, Roblox. Пополни кошелёк и покупай игры без танцев с бубном и чужих аккаунтов.</p>
+        <div class="want"><b>хочу</b> → гифт-карту Steam</div>
+      </div>
+      <div class="aud-card reveal">
+        <div class="aud-ico" style="color:var(--violet)">🤖</div>
+        <h3>AI-креаторам</h3>
+        <p>Виртуальная зарубежная карта для оплаты подписок там, где не проходят российские: ChatGPT, Higgsfield, Midjourney, Canva.</p>
+        <div class="want"><b>хочу</b> → карту для подписок</div>
+      </div>
+      <div class="aud-card reveal">
+        <div class="aud-ico" style="color:var(--amber)">📱</div>
+        <h3>Всем остальным</h3>
+        <p>App Store, iTunes, Google Play, Netflix, Amazon. Пополни баланс или подари сертификат за минуту.</p>
+        <div class="want"><b>хочу</b> → пополнить App Store</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIFT CARD SHOWCASE -->
+<section id="giftcards" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">// гифт-карты</span>
+      <h2>Номиналы на любой вкус</h2>
+      <p>Выбирай сумму — код приходит в чат сразу после оплаты. Вот лишь часть того, что есть в боте.</p>
+    </div>
+    <div class="cards-showcase">
+      <div class="gcard reveal" style="background:linear-gradient(135deg,#1B2838,#0A1622)">
+        <span class="sheen"></span>
+        <div class="glow" style="background:#CBF23D"></div>
+        <div class="top"><span class="brand">Steam</span><span class="chipico"></span></div>
+        <div class="val" style="color:var(--neon)">$25</div>
+        <div class="foot">GIFT CARD · REGION FREE</div>
+      </div>
+      <div class="gcard reveal" style="background:linear-gradient(135deg,#0A0A0A,#1A1A1A)">
+        <span class="sheen"></span>
+        <div class="glow" style="background:#CBF23D"></div>
+        <div class="top"><span class="brand">App Store</span><span class="chipico"></span></div>
+        <div class="val" style="color:var(--violet)">1000 ₽</div>
+        <div class="foot">iTUNES · APP STORE · RU</div>
+      </div>
+      <div class="gcard reveal" style="background:linear-gradient(135deg,#003087,#0059B3)">
+        <span class="sheen"></span>
+        <div class="glow" style="background:#5599FF"></div>
+        <div class="top"><span class="brand">PlayStation</span><span class="chipico"></span></div>
+        <div class="val" style="color:#7DB4FF">$50</div>
+        <div class="foot">PSN WALLET TOP-UP</div>
+      </div>
+      <div class="gcard reveal" style="background:linear-gradient(135deg,#0E3B1E,#07240F)">
+        <span class="sheen"></span>
+        <div class="glow" style="background:#CBF23D"></div>
+        <div class="top"><span class="brand">Xbox</span><span class="chipico"></span></div>
+        <div class="val" style="color:var(--neon)">$30</div>
+        <div class="foot">GAME PASS · GIFT CARD</div>
+      </div>
+      <div class="gcard reveal" style="background:linear-gradient(135deg,#3A0A0A,#1E0505)">
+        <span class="sheen"></span>
+        <div class="glow" style="background:#FF5F57"></div>
+        <div class="top"><span class="brand">Netflix</span><span class="chipico"></span></div>
+        <div class="val" style="color:#FF7A72">2500 ₽</div>
+        <div class="foot">STREAMING · GIFT</div>
+      </div>
+      <div class="gcard reveal" style="background:linear-gradient(135deg,#2B1B00,#160D00)">
+        <span class="sheen"></span>
+        <div class="glow" style="background:#FFB454"></div>
+        <div class="top"><span class="brand">Roblox</span><span class="chipico"></span></div>
+        <div class="val" style="color:var(--amber)">2000 R$</div>
+        <div class="foot">ROBUX · GIFT CARD</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIRTUAL CARD -->
+<section id="virtual">
+  <div class="wrap vcard-sec">
+    <div class="vcard-stage reveal">
+      <div class="vcard">
+        <div class="vcard-in">
+          <div class="vcard-top">
+            <div>
+              <div class="lbl">PAYXO VIRTUAL</div>
+              <div class="vchip"></div>
+            </div>
+            <div class="net">VISA</div>
+          </div>
+          <div class="vnum">4•• ••• ••• 0X0</div>
+          <div class="vbottom">
+            <div><span class="k">CARD HOLDER</span><span class="v">PAYXO USER</span></div>
+            <div><span class="k">VALID</span><span class="v">••/••</span></div>
+            <div style="text-align:right"><span class="k">CVV</span><span class="v">•••</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="sec-tag">// виртуальные карты</span>
+      <h2 style="font-size:clamp(28px,4vw,42px);letter-spacing:-1.4px;line-height:1.08;font-weight:700;margin-bottom:8px">Карта для зарубежных сервисов</h2>
+      <p style="color:var(--ink-dim);font-size:16.5px;line-height:1.6;margin-bottom:28px;max-width:460px">Оплачивай там, где не проходят карты РФ. Виртуальная карта в долларах — выпуск за минуту прямо в боте.</p>
+      <div class="vlist">
+        <div class="vlist-item">
+          <div class="ci" style="color:var(--violet)">🤖</div>
+          <div><h4>Подписки на AI</h4><p>ChatGPT Plus, Higgsfield, Midjourney, Claude — всё, что требует зарубежную карту.</p></div>
+        </div>
+        <div class="vlist-item">
+          <div class="ci" style="color:var(--neon)">🎨</div>
+          <div><h4>Сервисы и софт</h4><p>Canva Pro, Spotify, Adobe, хостинги, домены — оплата в один клик.</p></div>
+        </div>
+        <div class="vlist-item">
+          <div class="ci" style="color:var(--amber)">⚡</div>
+          <div><h4>Мгновенный выпуск</h4><p>Данные карты приходят в чат сразу. Пополняй на нужную сумму под конкретную покупку.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">// каталог</span>
+      <h2>Бренды, которые есть в боте</h2>
+      <p>Цены и наличие подгружаются в реальном времени. Не нашёл нужное — просто напиши в бот.</p>
+    </div>
+    <div class="logowall">
+      <div class="logo-tile reveal" title="Steam"><svg viewBox="0 0 120 40"><text x="60" y="27" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="20" fill="#EAF2F0">Steam</text></svg></div>
+      <div class="logo-tile reveal" title="App Store"><svg viewBox="0 0 40 40"><path d="M27 21c0-3.2 2.6-4.7 2.7-4.8-1.5-2.1-3.7-2.4-4.5-2.5-1.9-.2-3.7 1.1-4.7 1.1s-2.5-1.1-4.1-1c-2.1 0-4 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.5 12.5 1 1.5 2.3 3.2 3.9 3.1 1.6-.1 2.2-1 4.1-1s2.4 1 4.1 1c1.7 0 2.8-1.5 3.8-3 1.2-1.7 1.7-3.4 1.7-3.5-.1 0-3.3-1.3-3.3-5zM23.9 11.7c.9-1.1 1.5-2.5 1.3-4-1.3.1-2.8.9-3.7 1.9-.8.9-1.5 2.4-1.3 3.8 1.4.1 2.9-.7 3.7-1.7z" fill="#EAF2F0"/></svg></div>
+      <div class="logo-tile reveal" title="PlayStation"><svg viewBox="0 0 120 40"><text x="60" y="26" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="15" fill="#7DB4FF">PlayStation</text></svg></div>
+      <div class="logo-tile reveal" title="Xbox"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" fill="none" stroke="#CBF23D" stroke-width="2.5"/><path d="M12 30c3-6 5-9 8-12 3 3 5 6 8 12M12 10c3 3 5 5 8 9 3-4 5-6 8-9" stroke="#CBF23D" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="logo-tile reveal" title="Netflix"><svg viewBox="0 0 120 40"><text x="60" y="27" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="19" fill="#FF5F57" letter-spacing="1">NETFLIX</text></svg></div>
+      <div class="logo-tile reveal" title="Roblox"><svg viewBox="0 0 120 40"><text x="60" y="27" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="19" fill="#FFB454">ROBLOX</text></svg></div>
+      <div class="logo-tile reveal" title="ChatGPT"><svg viewBox="0 0 120 40"><text x="60" y="26" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="15" fill="#EAF2F0">ChatGPT</text></svg></div>
+      <div class="logo-tile reveal" title="Higgsfield"><svg viewBox="0 0 120 40"><text x="60" y="26" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="14" fill="#CBF23D">Higgsfield</text></svg></div>
+      <div class="logo-tile reveal" title="Canva"><svg viewBox="0 0 120 40"><text x="60" y="26" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="17" fill="#CBF23D">Canva</text></svg></div>
+      <div class="logo-tile reveal" title="Spotify"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" fill="#CBF23D"/><path d="M13 17c4-1 9-.5 13 1.5M13.5 21c3.5-.8 7.5-.3 10.5 1.3M14 25c2.8-.6 5.8-.3 8 1" stroke="#07090C" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="logo-tile reveal" title="Amazon"><svg viewBox="0 0 120 40"><text x="60" y="24" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="17" fill="#EAF2F0">amazon</text><path d="M42 30c11 4 25 4 36 0" stroke="#FFB454" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="logo-tile reveal" title="Telegram Premium"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" fill="#CBF23D"/><path d="M13 20l14-5-2 12-4-3-2 3-1-4z" fill="#07090C"/></svg></div>
+    </div>
+  </div>
+  <div class="marquee-wrap reveal" style="margin-top:44px">
+    <div class="marquee">
+      <span class="chip"><b style="background:#CBF23D"></b>Steam</span>
+      <span class="chip"><b style="background:#CBF23D"></b>ChatGPT Plus</span>
+      <span class="chip"><b style="background:#FFB454"></b>App Store</span>
+      <span class="chip"><b style="background:#CBF23D"></b>PlayStation</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Higgsfield</span>
+      <span class="chip"><b style="background:#FFB454"></b>iTunes</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Xbox</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Canva Pro</span>
+      <span class="chip"><b style="background:#FFB454"></b>Netflix</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Roblox</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Steam</span>
+      <span class="chip"><b style="background:#CBF23D"></b>ChatGPT Plus</span>
+      <span class="chip"><b style="background:#FFB454"></b>App Store</span>
+      <span class="chip"><b style="background:#CBF23D"></b>PlayStation</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Higgsfield</span>
+      <span class="chip"><b style="background:#FFB454"></b>iTunes</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Xbox</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Canva Pro</span>
+      <span class="chip"><b style="background:#FFB454"></b>Netflix</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Roblox</span>
+    </div>
+    <div class="marquee rev">
+      <span class="chip"><b style="background:#CBF23D"></b>Midjourney</span>
+      <span class="chip"><b style="background:#FFB454"></b>Amazon</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Google Play</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Виртуальная карта USD</span>
+      <span class="chip"><b style="background:#FFB454"></b>Binance</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Telegram Premium</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Spotify</span>
+      <span class="chip"><b style="background:#FFB454"></b>Мобильный топ-ап</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Midjourney</span>
+      <span class="chip"><b style="background:#FFB454"></b>Amazon</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Google Play</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Виртуальная карта USD</span>
+      <span class="chip"><b style="background:#FFB454"></b>Binance</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Telegram Premium</span>
+      <span class="chip"><b style="background:#CBF23D"></b>Spotify</span>
+      <span class="chip"><b style="background:#FFB454"></b>Мобильный топ-ап</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">// как это работает</span>
+      <h2>Три шага — и код у тебя</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="line"></span>
+        <div class="n">01</div>
+        <h3>Открой бота</h3>
+        <p>Заходи в @payxo_bot и выбирай, что нужно: гифт-карту, виртуальную карту или подписку.</p>
+      </div>
+      <div class="step reveal">
+        <span class="line"></span>
+        <div class="n">02</div>
+        <h3>Оплати по СБП</h3>
+        <p>Оплата через Систему быстрых платежей или картой РФ. Цену видишь сразу, без скрытых комиссий.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">03</div>
+        <h3>Получи код</h3>
+        <p>Код или данные карты приходят в чат автоматически — обычно за минуту. Никакого ожидания оператора.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">// почему payxo</span>
+      <h2>Быстро, честно, без лишнего</h2>
+    </div>
+    <div class="why">
+      <div class="why-item reveal"><div class="i">⚡</div><h4>Моментально</h4><p>Автоматическая выдача сразу после оплаты, без ручного подтверждения.</p></div>
+      <div class="why-item reveal"><div class="i">🌍</div><h4>Зарубежные сервисы</h4><p>Оплачивай подписки, которые не принимают карты РФ, — через виртуальную карту.</p></div>
+      <div class="why-item reveal"><div class="i">🔒</div><h4>Безопасно</h4><p>Оплата идёт через проверенный платёжный шлюз. Данные карты не хранятся у нас.</p></div>
+      <div class="why-item reveal"><div class="i">🏦</div><h4>Оплата по СБП</h4><p>Быстрый платёж по QR или картой РФ — удобно и привычно, без лишних шагов.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final">
+  <div class="final-card reveal">
+    <h2>Готов оплатить<br><span class="grad">что угодно?</span></h2>
+    <p>Открой бота и попробуй прямо сейчас — это займёт минуту.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://t.me/payxo_bot" target="_blank" rel="noopener">
+        Открыть @payxo_bot
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div class="logo">PAY<b>XO</b><span class="cursor"></span></div>
+      <div class="foot-links">
+        <a href="https://t.me/payxo_bot" target="_blank" rel="noopener">Telegram-бот</a>
+        <a href="#catalog">Каталог</a>
+        <a href="#how">Как купить</a>
+      </div>
+    </div>
+    <p class="foot-note">© 2026 PAYXO · оплата цифровых товаров и подписок · payxo.ru</p>
+  </div>
+</footer>
+
+<script>
+  // live feed generator
+  (function(){
+    const items=[
+      ['Steam 25$','#CBF23D'],['ChatGPT Plus','#CBF23D'],['App Store 1000₽','#FFB454'],
+      ['Higgsfield','#CBF23D'],['PlayStation','#CBF23D'],['Виртуальная карта','#CBF23D'],
+      ['Netflix','#FFB454'],['Roblox 2000','#CBF23D'],['Canva Pro','#CBF23D'],
+      ['Telegram Premium','#CBF23D'],['Xbox Game Pass','#CBF23D'],['iTunes 500₽','#FFB454'],
+      ['Midjourney','#CBF23D'],['Google Play','#FFB454'],['Binance','#FFB454']
+    ];
+    const cities=['msk','spb','ekb','kzn','nsk','rnd','sochi','ufa','sam','krd'];
+    const feed=document.getElementById('feed');
+    function amt(){return (Math.floor(Math.random()*46)+4)}
+    let html='';
+    function rows(){
+      let s='';
+      for(let i=0;i<14;i++){
+        const it=items[Math.floor(Math.random()*items.length)];
+        const c=cities[Math.floor(Math.random()*cities.length)];
+        s+=`<div class="feed-row"><div class="l"><span class="tag" style="background:${it[1]}"></span>${it[0]}</div><div style="display:flex;gap:14px;align-items:center"><span class="ok">✓ ${c}</span><span class="amt">+${amt()}$</span></div></div>`;
+      }
+      return s;
+    }
+    const block=rows();
+    feed.innerHTML=block+block; // duplicate for seamless loop
+  })();
+
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.12});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
+  // spotlight on audience cards
+  document.querySelectorAll('.aud-card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      card.style.setProperty('--mx',(e.clientX-r.left)+'px');
+      card.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+  });
+</script>
+</body>
+</html>
