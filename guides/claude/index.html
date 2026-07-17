@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Как оплатить подписку Claude через PayXO</title>
+<meta name="description" content="Пошаговая инструкция: как купить подписку Claude Pro или Max через пополнение Apple ID в PayXO." />
+<link rel="canonical" href="http://payxo.ru/guides/claude/" />
+<meta property="og:title" content="Как оплатить подписку Claude через PayXO" />
+<meta property="og:description" content="Пошаговая инструкция: как купить подписку Claude Pro или Max через пополнение Apple ID в PayXO." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://payxo.ru/guides/claude/" />
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0E; --lime:#D6F42F; --lime-hover:#E7FF6A; --lavender:#D9C8F5;
+    --card:#151519; --card-border:#23232B; --line:#3A3A44; --line-soft:#1E1E24;
+    --dim:#8B8B96; --dim2:#B9B9C2; --milk:#F4F4EE;
+  }
+  *{box-sizing:border-box}
+  body{ margin:0; background:var(--ink); font-family:'Onest',sans-serif; color:var(--milk); min-height:100vh; }
+  a{ color:var(--lime); text-decoration:none; }
+  a:hover{ color:var(--lime-hover); }
+  header{ border-bottom:1px solid var(--line-soft); }
+  .nav-in{ max-width:840px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .logo{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:22px; color:var(--milk); }
+  .logo span{ color:var(--lime); }
+  .crumbs{ font-size:13px; color:var(--dim); }
+  .crumbs a{ color:var(--dim2); }
+  .crumbs a:hover{ color:var(--lime); }
+  .btn-outline{ display:inline-flex; align-items:center; gap:8px; border:1.5px solid var(--line); color:var(--milk); font-weight:600; font-size:14px; padding:10px 20px; border-radius:999px; transition:border-color .2s, color .2s; }
+  .btn-outline:hover{ border-color:var(--lime); color:var(--lime); }
+  .btn-lime{ display:inline-flex; align-items:center; justify-content:center; gap:10px; background:var(--lime); color:var(--ink); font-weight:700; border-radius:999px; font-size:17px; padding:16px 34px; border:none; transition:transform .2s cubic-bezier(0.34,1.56,0.64,1), background .2s; }
+  .btn-lime:hover{ background:var(--lime-hover); transform:scale(1.04); }
+
+  main{ max-width:840px; margin:0 auto; padding:40px 24px 96px; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:10px; background:var(--card); border:1px solid var(--card-border); color:var(--lavender); font-weight:600; font-size:14px; padding:8px 16px; border-radius:999px; }
+  .eyebrow img{ width:16px; height:16px; }
+  h1{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:clamp(30px,4.5vw,44px); line-height:1.15; margin:20px 0 0; }
+  .lead{ color:var(--dim2); font-size:16px; line-height:1.6; margin:18px 0 0; max-width:620px; }
+  .note{ margin-top:20px; background:var(--card); border:1px solid var(--card-border); border-left:3px solid var(--lavender); border-radius:12px; padding:16px 20px; color:var(--dim2); font-size:14px; line-height:1.55; }
+
+  .steps{ display:grid; gap:16px; margin-top:48px; }
+  .step-card{ position:relative; background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:28px 28px 28px 92px; }
+  .step-num{ position:absolute; left:28px; top:28px; width:44px; height:44px; border-radius:12px; background:var(--ink); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'Unbounded',sans-serif; font-weight:800; font-size:16px; color:var(--lime); }
+  .step-title{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:19px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .step-desc{ color:var(--dim2); font-size:15px; line-height:1.65; margin-top:10px; }
+  .step-desc a{ font-weight:600; }
+  .step-desc code{ background:var(--ink); border:1px solid var(--line); border-radius:6px; padding:2px 7px; font-size:14px; }
+
+  .cta{ margin-top:56px; background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:36px; text-align:center; }
+  .cta p{ color:var(--dim); font-size:15px; margin:10px 0 22px; }
+
+  .faq{ margin-top:56px; }
+  .faq h2{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:22px; margin:0 0 20px; }
+  .faq-item{ border:1px solid var(--card-border); border-radius:16px; margin-bottom:10px; background:var(--card); overflow:hidden; }
+  .faq-q{ width:100%; display:flex; justify-content:space-between; align-items:center; gap:16px; background:none; border:none; color:var(--milk); font-family:'Onest',sans-serif; font-weight:700; font-size:15px; text-align:left; padding:18px 22px; cursor:pointer; transition:color .2s; }
+  .faq-q:hover{ color:var(--lime); }
+  .faq-icon{ color:var(--lime); font-family:'Unbounded',sans-serif; font-weight:800; font-size:16px; flex-shrink:0; transition:transform .3s cubic-bezier(0.34,1.56,0.64,1); display:inline-block; transform:rotate(45deg); }
+  .faq-item.open .faq-icon{ transform:rotate(0deg); }
+  .faq-a-wrap{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .faq-item.open .faq-a-wrap{ max-height:480px; }
+  .faq-a{ margin:0; padding:0 22px 18px; color:var(--dim2); font-size:14px; line-height:1.65; }
+  .faq-a ol{ margin:0; padding-left:20px; }
+  .faq-a li{ margin-bottom:6px; }
+  .faq-a .apple-link{ display:inline-block; margin-top:10px; font-weight:600; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav-in">
+      <a href="../../index.html" class="logo">Pay<span>XO</span></a>
+      <span class="crumbs"><a href="../../index.html">Главная</a> / <a href="../index.html">Гайды</a> / Claude</span>
+      <a href="../../index.html" class="btn-outline">← На главную</a>
+    </div>
+  </header>
+
+  <main>
+    <span class="eyebrow"><img src="https://cdn.simpleicons.org/claude/D97757" alt="">Claude</span>
+    <h1>Как оплатить подписку Claude через бот PayXO</h1>
+    <p class="lead">Подписка Claude Pro или Max оформляется через ваш Apple ID на iPhone. PayXO продаёт пополнение баланса Apple ID нужного региона: вы пополняете баланс, а подписку оформляете сами в официальном приложении Claude.</p>
+    <p class="note">Нужен iPhone с Apple ID зарубежного региона — мы рекомендуем США или Турцию, но подойдёт любой регион, кроме России. Не уверены в своём регионе или хотите его сменить — разверните подсказки ниже.</p>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          <span>Как узнать регион Apple ID?</span>
+          <span class="faq-icon">✕</span>
+        </button>
+        <div class="faq-a-wrap">
+          <p class="faq-a">Чтобы проверить регион вашего аккаунта Apple ID, откройте «Настройки» ➔ нажмите на своё имя ➔ «Контент и покупки» ➔ «Просмотреть» ➔ «Страна/регион».</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          <span>Как поменять регион Apple ID?</span>
+          <span class="faq-icon">✕</span>
+        </button>
+        <div class="faq-a-wrap">
+          <div class="faq-a">
+            <ol>
+              <li>Откройте приложение «Настройки».</li>
+              <li>Нажмите на своё имя, а затем — «Контент и покупки».</li>
+              <li>Нажмите «Просмотреть». Может потребоваться выполнить вход.</li>
+              <li>Нажмите «Страна/регион».</li>
+              <li>Выберите новую страну или регион.</li>
+              <li>Нажмите «Изменить страну или регион».</li>
+              <li>Выберите новую страну или регион, затем просмотрите положения и условия.</li>
+              <li>Нажмите «Принимаю» в верхнем правом углу, затем снова нажмите «Принимаю» для подтверждения.</li>
+              <li>Выберите способ оплаты, введите новую платёжную информацию и адрес выставления счетов, затем нажмите «Далее». Возможно, вам потребуется ввести действительный способ оплаты для новой страны или региона.</li>
+            </ol>
+            <a class="apple-link" href="../smena-regiona-appstore/">Подробная инструкция с картинками →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Узнайте цену подписки в приложении Claude</div>
+        <div class="step-desc">Откройте официальное приложение Claude → Настройки → Подписка. Посмотрите цену Pro или Max именно в вашем регионе — она понадобится на следующем шаге. Цена отличается от региона к региону и может меняться, поэтому смотрите её в приложении.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Купите пополнение Apple ID в PayXO</div>
+        <div class="step-desc">В боте <a href="https://t.me/payxo_bot" target="_blank" rel="noopener">@payxo_bot</a> откройте <b>Каталог → Подписки → Apple</b>, выберите тот же регион, что и у вашего Apple ID, и номинал, равный цене подписки.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Оплатите и активируйте код</div>
+        <div class="step-desc">После оплаты бот пришлёт код и кнопку «Активировать на этом устройстве» — нажмите её. Баланс Apple ID пополнится автоматически.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">Оформите подписку в Claude</div>
+        <div class="step-desc">Вернитесь в приложение Claude и оформите Pro или Max — сумма спишется с пополненного баланса Apple ID, без карты и без комиссий.</div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <div style="font-family:'Unbounded',sans-serif;font-weight:600;font-size:20px">Готовы начать?</div>
+      <p>Откройте бота и выберите регион своего Apple ID</p>
+      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime">Открыть @payxo_bot</a>
+    </div>
+
+    <div class="faq">
+      <h2>Частые вопросы</h2>
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          <span>Что если я куплю не тот номинал?</span>
+          <span class="faq-icon">✕</span>
+        </button>
+        <div class="faq-a-wrap">
+          <p class="faq-a">Деньги останутся на балансе Apple ID — просто в следующий раз докупите разницу тем же способом.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          <span>Можно активировать код на другой iPhone?</span>
+          <span class="faq-icon">✕</span>
+        </button>
+        <div class="faq-a-wrap">
+          <p class="faq-a">Да, чтобы активировать код пополнения Apple на другом iPhone, откройте приложение App Store, нажмите на фото профиля в правом верхнем углу, выберите пункт «Погасить подарочную карту или код» (Redeem Gift Card or Code), нажмите «Ввести код вручную» (Enter Code Manually), введите 16-значный код, который прислал вам бот, и подтвердите действие.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          <span>Регион можно менять обратно?</span>
+          <span class="faq-icon">✕</span>
+        </button>
+        <div class="faq-a-wrap">
+          <p class="faq-a">Да, но у Apple есть ограничения по частоте смены региона — посмотрите подсказку «Как поменять регион Apple ID?» выше, прежде чем менять туда-обратно.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+(function(){
+  document.querySelectorAll('.faq').forEach(function(group){
+    var items = group.querySelectorAll('.faq-item');
+    items.forEach(function(item){
+      item.querySelector('.faq-q').addEventListener('click', function(){
+        var wasOpen = item.classList.contains('open');
+        items.forEach(function(o){ o.classList.remove('open'); });
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
