@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Как оплатить подписку ChatGPT через PayXO</title>
 <meta name="description" content="Пошаговая инструкция: как купить подписку ChatGPT через пополнение Apple ID в PayXO." />
+<link rel="canonical" href="https://payxo.ru/guides/chatgpt/" />
+<meta property="og:title" content="Как оплатить подписку ChatGPT через PayXO" />
+<meta property="og:description" content="Пошаговая инструкция: как купить подписку ChatGPT через пополнение Apple ID в PayXO." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://payxo.ru/guides/chatgpt/" />
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -18,15 +23,18 @@
   a{ color:var(--lime); text-decoration:none; }
   a:hover{ color:var(--lime-hover); }
   header{ border-bottom:1px solid var(--line-soft); }
-  .nav-in{ max-width:840px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-in{ max-width:840px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
   .logo{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:22px; color:var(--milk); }
   .logo span{ color:var(--lime); }
+  .crumbs{ font-size:13px; color:var(--dim); }
+  .crumbs a{ color:var(--dim2); }
+  .crumbs a:hover{ color:var(--lime); }
   .btn-outline{ display:inline-flex; align-items:center; gap:8px; border:1.5px solid var(--line); color:var(--milk); font-weight:600; font-size:14px; padding:10px 20px; border-radius:999px; transition:border-color .2s, color .2s; }
   .btn-outline:hover{ border-color:var(--lime); color:var(--lime); }
   .btn-lime{ display:inline-flex; align-items:center; justify-content:center; gap:10px; background:var(--lime); color:var(--ink); font-weight:700; border-radius:999px; font-size:17px; padding:16px 34px; border:none; transition:transform .2s cubic-bezier(0.34,1.56,0.64,1), background .2s; }
   .btn-lime:hover{ background:var(--lime-hover); transform:scale(1.04); }
 
-  main{ max-width:840px; margin:0 auto; padding:56px 24px 96px; }
+  main{ max-width:840px; margin:0 auto; padding:40px 24px 96px; }
   .eyebrow{ display:inline-flex; align-items:center; gap:10px; background:var(--card); border:1px solid var(--card-border); color:var(--lavender); font-weight:600; font-size:14px; padding:8px 16px; border-radius:999px; }
   .eyebrow img{ width:16px; height:16px; }
   h1{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:clamp(30px,4.5vw,44px); line-height:1.15; margin:20px 0 0; }
@@ -37,7 +45,6 @@
   .step-card{ position:relative; background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:28px 28px 28px 92px; }
   .step-num{ position:absolute; left:28px; top:28px; width:44px; height:44px; border-radius:12px; background:var(--ink); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'Unbounded',sans-serif; font-weight:800; font-size:16px; color:var(--lime); }
   .step-title{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:19px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-  .step-optional{ font-family:'Onest',sans-serif; font-weight:600; font-size:12px; color:var(--dim); background:var(--ink); border:1px solid var(--line); padding:3px 10px; border-radius:999px; }
   .step-desc{ color:var(--dim2); font-size:15px; line-height:1.65; margin-top:10px; }
   .step-desc a{ font-weight:600; }
   .step-desc code{ background:var(--ink); border:1px solid var(--line); border-radius:6px; padding:2px 7px; font-size:14px; }
@@ -63,13 +70,14 @@
 <body>
   <header>
     <div class="nav-in">
-      <a href="./index.html" class="logo">Pay<span>XO</span></a>
-      <a href="./index.html" class="btn-outline">← На главную</a>
+      <a href="../../index.html" class="logo">Pay<span>XO</span></a>
+      <span class="crumbs"><a href="../../index.html">Главная</a> / <a href="../index.html">Гайды</a> / ChatGPT</span>
+      <a href="../../index.html" class="btn-outline">← На главную</a>
     </div>
   </header>
 
   <main>
-    <span class="eyebrow"><img src="./icons/openai-white.svg" alt="">ChatGPT</span>
+    <span class="eyebrow"><img src="../../icons/openai-white.svg" alt="">ChatGPT</span>
     <h1>Как оплатить подписку ChatGPT через бот PayXO</h1>
     <p class="lead">Подписка ChatGPT оформляется через ваш Apple ID на iPhone. PayXO продаёт пополнение баланса Apple ID нужного региона: вы пополняете баланс, а подписку оформляете сами в официальном приложении ChatGPT.</p>
     <p class="note">Нужен iPhone с Apple ID зарубежного региона — мы рекомендуем США или Турцию, но подойдёт любой регион, кроме России. Не уверены в своём регионе или хотите его сменить — разверните подсказки ниже.</p>
@@ -102,7 +110,7 @@
               <li>Нажмите «Принимаю» в верхнем правом углу, затем снова нажмите «Принимаю» для подтверждения.</li>
               <li>Выберите способ оплаты, введите новую платёжную информацию и адрес выставления счетов, затем нажмите «Далее». Возможно, вам потребуется ввести действительный способ оплаты для новой страны или региона.</li>
             </ol>
-            <a class="apple-link" href="https://support.apple.com/ru-ru/118283" target="_blank" rel="noopener">Полная инструкция на сайте Apple →</a>
+            <a class="apple-link" href="../smena-regiona-appstore/">Подробная инструкция с картинками →</a>
           </div>
         </div>
       </div>

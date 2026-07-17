@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Гайды и инструкции — PayXO</title>
+<meta name="description" content="Пошаговые инструкции: как оплачивать зарубежные подписки и гифт-карты, менять регион Apple ID и активировать коды." />
+<link rel="canonical" href="https://payxo.ru/guides/" />
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0E; --lime:#D6F42F; --lime-hover:#E7FF6A;
+    --card:#151519; --card-border:#23232B; --line:#3A3A44; --line-soft:#1E1E24;
+    --dim:#8B8B96; --dim2:#B9B9C2; --milk:#F4F4EE;
+  }
+  *{box-sizing:border-box}
+  body{ margin:0; background:var(--ink); font-family:'Onest',sans-serif; color:var(--milk); min-height:100vh; }
+  a{ color:var(--lime); text-decoration:none; }
+  a:hover{ color:var(--lime-hover); }
+  header{ border-bottom:1px solid var(--line-soft); }
+  .nav-in{ max-width:840px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .logo{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:22px; color:var(--milk); }
+  .logo span{ color:var(--lime); }
+  .btn-outline{ border:1.5px solid var(--line); color:var(--milk); font-weight:600; font-size:14px; padding:10px 20px; border-radius:999px; transition:border-color .2s, color .2s; }
+  .btn-outline:hover{ border-color:var(--lime); color:var(--lime); }
+
+  main{ max-width:840px; margin:0 auto; padding:64px 24px 96px; }
+  h1{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:clamp(30px,4.5vw,44px); margin:0; }
+  .lead{ color:var(--dim); font-size:16px; line-height:1.6; margin:20px 0 0; max-width:560px; }
+
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin-top:48px; }
+  .guide-card{ display:block; background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:28px; color:var(--milk); transition:transform .2s, border-color .2s; }
+  .guide-card:hover{ transform:translateY(-4px); border-color:var(--lime); }
+  .guide-tag{ font-size:12px; font-weight:600; color:var(--dim); text-transform:uppercase; letter-spacing:.04em; }
+  .guide-card h3{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:20px; margin:10px 0 0; }
+  .guide-card p{ color:var(--dim); font-size:14px; line-height:1.55; margin-top:10px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav-in">
+      <a href="../index.html" class="logo">Pay<span>XO</span></a>
+      <a href="../index.html" class="btn-outline">← На главную</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Гайды и инструкции</h1>
+    <p class="lead">Пошаговые статьи о том, как оплачивать зарубежные сервисы через PayXO — от смены региона Apple ID до оформления конкретных подписок.</p>
+
+    <div class="grid">
+      <a class="guide-card" href="./chatgpt/">
+        <div class="guide-tag">Подписки</div>
+        <h3>Как оплатить ChatGPT через PayXO</h3>
+        <p>Пополнение Apple ID нужного региона и оформление подписки в приложении ChatGPT.</p>
+      </a>
+      <a class="guide-card" href="./smena-regiona-appstore/">
+        <div class="guide-tag">Apple ID</div>
+        <h3>Как сменить регион App Store</h3>
+        <p>Пошаговая смена страны/региона аккаунта Apple ID на iPhone.</p>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

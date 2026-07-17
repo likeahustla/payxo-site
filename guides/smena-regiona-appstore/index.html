@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Как сменить регион App Store на iPhone — инструкция PayXO</title>
+<meta name="description" content="Пошаговая инструкция: как сменить страну или регион Apple ID на iPhone, чтобы покупать зарубежные подписки и гифт-карты." />
+<link rel="canonical" href="https://payxo.ru/guides/smena-regiona-appstore/" />
+<meta property="og:title" content="Как сменить регион App Store на iPhone" />
+<meta property="og:description" content="Пошаговая инструкция: как сменить страну или регион Apple ID на iPhone." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://payxo.ru/guides/smena-regiona-appstore/" />
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как сменить регион App Store на iPhone",
+  "description": "Пошаговая инструкция по смене страны или региона аккаунта Apple ID на iPhone.",
+  "step": [
+    {"@type": "HowToStep", "position": 1, "text": "Откройте приложение «Настройки»."},
+    {"@type": "HowToStep", "position": 2, "text": "Нажмите на своё имя, а затем — «Контент и покупки»."},
+    {"@type": "HowToStep", "position": 3, "text": "Нажмите «Просмотреть». Может потребоваться выполнить вход."},
+    {"@type": "HowToStep", "position": 4, "text": "Нажмите «Страна/регион»."},
+    {"@type": "HowToStep", "position": 5, "text": "Выберите новую страну или регион."},
+    {"@type": "HowToStep", "position": 6, "text": "Нажмите «Изменить страну или регион»."},
+    {"@type": "HowToStep", "position": 7, "text": "Выберите новую страну или регион, затем просмотрите положения и условия."},
+    {"@type": "HowToStep", "position": 8, "text": "Нажмите «Принимаю» в верхнем правом углу, затем снова нажмите «Принимаю» для подтверждения."},
+    {"@type": "HowToStep", "position": 9, "text": "Выберите способ оплаты, введите новую платёжную информацию и адрес выставления счетов, затем нажмите «Далее»."}
+  ]
+}
+</script>
+<style>
+  :root{
+    --ink:#0B0B0E; --lime:#D6F42F; --lime-hover:#E7FF6A; --lavender:#D9C8F5;
+    --card:#151519; --card-border:#23232B; --line:#3A3A44; --line-soft:#1E1E24;
+    --dim:#8B8B96; --dim2:#B9B9C2; --milk:#F4F4EE;
+  }
+  *{box-sizing:border-box}
+  body{ margin:0; background:var(--ink); font-family:'Onest',sans-serif; color:var(--milk); min-height:100vh; }
+  a{ color:var(--lime); text-decoration:none; }
+  a:hover{ color:var(--lime-hover); }
+  header{ border-bottom:1px solid var(--line-soft); }
+  .nav-in{ max-width:760px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .logo{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:22px; color:var(--milk); }
+  .logo span{ color:var(--lime); }
+  .crumbs{ font-size:13px; color:var(--dim); }
+  .crumbs a{ color:var(--dim2); }
+  .crumbs a:hover{ color:var(--lime); }
+  .btn-outline{ display:inline-flex; align-items:center; gap:8px; border:1.5px solid var(--line); color:var(--milk); font-weight:600; font-size:14px; padding:10px 20px; border-radius:999px; transition:border-color .2s, color .2s; }
+  .btn-outline:hover{ border-color:var(--lime); color:var(--lime); }
+  .btn-lime{ display:inline-flex; align-items:center; justify-content:center; gap:10px; background:var(--lime); color:var(--ink); font-weight:700; border-radius:999px; font-size:17px; padding:16px 34px; border:none; }
+  .btn-lime:hover{ background:var(--lime-hover); }
+
+  main{ max-width:760px; margin:0 auto; padding:40px 24px 96px; }
+  h1{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:clamp(28px,4.5vw,40px); line-height:1.15; margin:0; }
+  .lead{ color:var(--dim2); font-size:16px; line-height:1.6; margin:18px 0 0; }
+  .note{ margin-top:20px; background:var(--card); border:1px solid var(--card-border); border-left:3px solid var(--lavender); border-radius:12px; padding:16px 20px; color:var(--dim2); font-size:14px; line-height:1.55; }
+
+  ol.steps{ list-style:none; margin:40px 0 0; padding:0; display:grid; gap:14px; }
+  ol.steps li{ position:relative; background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:20px 20px 20px 68px; color:var(--dim2); font-size:15px; line-height:1.6; }
+  ol.steps li::before{ content: counter(step); counter-increment: step; position:absolute; left:18px; top:18px; width:32px; height:32px; border-radius:10px; background:var(--ink); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'Unbounded',sans-serif; font-weight:800; font-size:14px; color:var(--lime); }
+  ol.steps{ counter-reset: step; }
+  ol.steps b{ color:var(--milk); }
+
+  .warn{ margin-top:32px; background:var(--card); border:1px solid var(--card-border); border-left:3px solid var(--lime); border-radius:12px; padding:16px 20px; color:var(--dim2); font-size:14px; line-height:1.6; }
+
+  .cta{ margin-top:48px; background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:32px; text-align:center; }
+  .cta p{ color:var(--dim); font-size:15px; margin:8px 0 20px; }
+
+  .related{ margin-top:48px; }
+  .related h2{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:18px; margin:0 0 12px; }
+  .related a{ display:block; background:var(--card); border:1px solid var(--card-border); border-radius:14px; padding:16px 20px; font-weight:600; }
+  .related a:hover{ border-color:var(--lime); }
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav-in">
+      <a href="../../index.html" class="logo">Pay<span>XO</span></a>
+      <span class="crumbs"><a href="../../index.html">Главная</a> / <a href="../index.html">Гайды</a> / Смена региона</span>
+      <a href="../../index.html" class="btn-outline">← На главную</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Как сменить регион App Store на iPhone</h1>
+    <p class="lead">Чтобы покупать зарубежные подписки (ChatGPT, Netflix и другие) через пополнение Apple ID, аккаунту нужен регион, отличный от России. Ниже — точная последовательность действий в «Настройках» iPhone.</p>
+    <p class="note">Перед сменой региона на аккаунте не должно быть активных подписок, оплаченных через этот же Apple ID, и баланс Apple ID должен быть нулевым (или близким к нулю) — иначе Apple может не дать сменить регион, пока средства не будут потрачены.</p>
+
+    <ol class="steps">
+      <li>Откройте приложение «Настройки».</li>
+      <li>Нажмите на своё имя, а затем — <b>«Контент и покупки»</b>.</li>
+      <li>Нажмите <b>«Просмотреть»</b>. Может потребоваться выполнить вход в Apple ID.</li>
+      <li>Нажмите <b>«Страна/регион»</b>.</li>
+      <li>Выберите новую страну или регион.</li>
+      <li>Нажмите <b>«Изменить страну или регион»</b>.</li>
+      <li>Выберите новую страну или регион, затем просмотрите положения и условия.</li>
+      <li>Нажмите <b>«Принимаю»</b> в верхнем правом углу, затем снова нажмите <b>«Принимаю»</b> для подтверждения.</li>
+      <li>Выберите способ оплаты, введите новую платёжную информацию и адрес выставления счетов, затем нажмите <b>«Далее»</b>. Возможно, потребуется ввести действительный способ оплаты для новой страны или региона.</li>
+    </ol>
+
+    <p class="warn">У Apple есть ограничения по частоте смены региона одного аккаунта — не меняйте его туда-обратно без необходимости. Полная официальная инструкция — на <a href="https://support.apple.com/ru-ru/118283" target="_blank" rel="noopener">сайте Apple →</a>.</p>
+
+    <div class="cta">
+      <div style="font-family:'Unbounded',sans-serif;font-weight:600;font-size:20px">Регион сменили?</div>
+      <p>Пополните Apple ID в боте PayXO и оформите нужную подписку</p>
+      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime">Открыть @payxo_bot</a>
+    </div>
+
+    <div class="related">
+      <h2>Читайте также</h2>
+      <a href="../chatgpt/">Как оплатить подписку ChatGPT через PayXO →</a>
+    </div>
+  </main>
+</body>
+</html>
