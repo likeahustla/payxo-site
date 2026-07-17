@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://payxo.ru/</loc>
+    <loc>https://payxo.ru/</loc>
   </url>
   <url>
-    <loc>http://payxo.ru/guides/</loc>
+    <loc>https://payxo.ru/guides/</loc>
   </url>
   <url>
-    <loc>http://payxo.ru/guides/chatgpt/</loc>
+    <loc>https://payxo.ru/guides/chatgpt/</loc>
   </url>
   <url>
-    <loc>http://payxo.ru/guides/claude/</loc>
+    <loc>https://payxo.ru/guides/claude/</loc>
   </url>
   <url>
-    <loc>http://payxo.ru/guides/smena-regiona-appstore/</loc>
+    <loc>https://payxo.ru/guides/smena-regiona-appstore/</loc>
   </url>
   <url>
-    <loc>http://payxo.ru/legal.html</loc>
+    <loc>https://payxo.ru/legal.html</loc>
   </url>
 </urlset>

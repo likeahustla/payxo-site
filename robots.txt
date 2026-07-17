@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://payxo.ru/sitemap.xml
+Sitemap: https://payxo.ru/sitemap.xml
