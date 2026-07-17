@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Как сменить регион App Store на iPhone — инструкция PayXO</title>
 <meta name="description" content="Пошаговая инструкция: как сменить страну или регион Apple ID на iPhone, чтобы покупать зарубежные подписки и гифт-карты." />
-<link rel="canonical" href="https://payxo.ru/guides/smena-regiona-appstore/" />
+<link rel="canonical" href="http://payxo.ru/guides/smena-regiona-appstore/" />
 <meta property="og:title" content="Как сменить регион App Store на iPhone" />
 <meta property="og:description" content="Пошаговая инструкция: как сменить страну или регион Apple ID на iPhone." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://payxo.ru/guides/smena-regiona-appstore/" />
+<meta property="og:url" content="http://payxo.ru/guides/smena-regiona-appstore/" />
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
@@ -71,7 +71,8 @@
   .fill-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid var(--line-soft); }
   .fill-label{ color:var(--dim); font-size:13px; flex:0 0 auto; min-width:120px; }
   .fill-value{ color:var(--milk); font-size:14px; font-weight:600; flex:1; }
-  .copy-btn{ flex:0 0 auto; background:none; border:1px solid var(--line); color:var(--dim2); font-size:13px; font-weight:600; padding:6px 14px; border-radius:999px; cursor:pointer; transition:border-color .2s, color .2s; }
+  .fill-hint{ color:var(--dim); font-size:12px; padding:0 0 4px; }
+  .copy-btn{ flex:0 0 auto; display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:none; border:1px solid var(--line); color:var(--dim2); border-radius:10px; cursor:pointer; transition:border-color .2s, color .2s; }
   .copy-btn:hover{ border-color:var(--lime); color:var(--lime); }
   .copy-btn.copied{ border-color:var(--lime); color:var(--lime); }
 
@@ -116,13 +117,14 @@
         <span class="fill-label">Способ оплаты</span>
         <span class="fill-value">Нет</span>
       </div>
-      <div class="fill-row"><span class="fill-label">Имя</span><span class="fill-value" data-copy="Ivan">Ivan</span><button class="copy-btn" type="button">Копировать</button></div>
-      <div class="fill-row"><span class="fill-label">Фамилия</span><span class="fill-value" data-copy="Ivanov">Ivanov</span><button class="copy-btn" type="button">Копировать</button></div>
-      <div class="fill-row"><span class="fill-label">Адрес</span><span class="fill-value" data-copy="2438 6th Ave">2438 6th Ave</span><button class="copy-btn" type="button">Копировать</button></div>
-      <div class="fill-row"><span class="fill-label">Город</span><span class="fill-value" data-copy="Ketchikan">Ketchikan</span><button class="copy-btn" type="button">Копировать</button></div>
-      <div class="fill-row"><span class="fill-label">Штат</span><span class="fill-value" data-copy="Аляска">Аляска</span><button class="copy-btn" type="button">Копировать</button></div>
-      <div class="fill-row"><span class="fill-label">Индекс</span><span class="fill-value" data-copy="99901">99901</span><button class="copy-btn" type="button">Копировать</button></div>
-      <div class="fill-row"><span class="fill-label">Телефон</span><span class="fill-value" data-copy="907 2259273">907 2259273</span><button class="copy-btn" type="button">Копировать</button></div>
+      <div class="fill-row"><span class="fill-label">Имя</span><span class="fill-value" data-copy="Ivan">Ivan</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+      <div class="fill-row"><span class="fill-label">Фамилия</span><span class="fill-value" data-copy="Ivanov">Ivanov</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+      <div class="fill-hint">Имя и фамилию можно указать любые — Apple их не проверяет.</div>
+      <div class="fill-row"><span class="fill-label">Адрес</span><span class="fill-value" data-copy="2438 6th Ave">2438 6th Ave</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+      <div class="fill-row"><span class="fill-label">Город</span><span class="fill-value" data-copy="Ketchikan">Ketchikan</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+      <div class="fill-row"><span class="fill-label">Штат</span><span class="fill-value" data-copy="Alaska">Alaska</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+      <div class="fill-row"><span class="fill-label">Индекс</span><span class="fill-value" data-copy="99901">99901</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+      <div class="fill-row"><span class="fill-label">Телефон</span><span class="fill-value" data-copy="907 2259273">907 2259273</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
     </div>
     <p class="warn">Это пример адреса реального населённого пункта (Кетчикан, Аляска) — только чтобы форма приняла корректный набор город/штат/индекс. Никакая доставка по нему не происходит: способ оплаты «Нет» — карта не привязывается и не списывается.</p>
 
@@ -145,8 +147,8 @@
   document.querySelectorAll('.copy-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
       var value = btn.previousElementSibling.getAttribute('data-copy');
-      var reset = function(){ btn.textContent = 'Копировать'; btn.classList.remove('copied'); };
-      var mark = function(){ btn.textContent = 'Скопировано'; btn.classList.add('copied'); setTimeout(reset, 1200); };
+      var reset = function(){ btn.classList.remove('copied'); };
+      var mark = function(){ btn.classList.add('copied'); setTimeout(reset, 1200); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(value).then(mark, mark);
       } else {
