@@ -66,6 +66,15 @@
 
   .warn{ margin-top:32px; background:var(--card); border:1px solid var(--card-border); border-left:3px solid var(--lime); border-radius:12px; padding:16px 20px; color:var(--dim2); font-size:14px; line-height:1.6; }
 
+  .fillcard{ margin-top:16px; background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:8px 20px; }
+  .fillcard-title{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:15px; padding:16px 0 12px; }
+  .fill-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid var(--line-soft); }
+  .fill-label{ color:var(--dim); font-size:13px; flex:0 0 auto; min-width:120px; }
+  .fill-value{ color:var(--milk); font-size:14px; font-weight:600; flex:1; }
+  .copy-btn{ flex:0 0 auto; background:none; border:1px solid var(--line); color:var(--dim2); font-size:13px; font-weight:600; padding:6px 14px; border-radius:999px; cursor:pointer; transition:border-color .2s, color .2s; }
+  .copy-btn:hover{ border-color:var(--lime); color:var(--lime); }
+  .copy-btn.copied{ border-color:var(--lime); color:var(--lime); }
+
   .cta{ margin-top:48px; background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:32px; text-align:center; }
   .cta p{ color:var(--dim); font-size:15px; margin:8px 0 20px; }
 
@@ -87,7 +96,7 @@
   <main>
     <h1>Как сменить регион App Store на iPhone</h1>
     <p class="lead">Чтобы покупать зарубежные подписки (ChatGPT, Netflix и другие) через пополнение Apple ID, аккаунту нужен регион, отличный от России. Ниже — точная последовательность действий в «Настройках» iPhone.</p>
-    <p class="note">Перед сменой региона на аккаунте не должно быть активных подписок, оплаченных через этот же Apple ID, и баланс Apple ID должен быть нулевым (или близким к нулю) — иначе Apple может не дать сменить регион, пока средства не будут потрачены.</p>
+    <p class="note">Перед сменой региона баланс Apple ID должен быть нулевым (или близким к нулю) — иначе Apple может не дать сменить регион, пока средства не будут потрачены. Требование об отсутствии активных подписок в разных источниках описывается по-разному — уточняем этот момент.</p>
 
     <ol class="steps">
       <li>Откройте приложение «Настройки».</li>
@@ -98,8 +107,24 @@
       <li>Нажмите <b>«Изменить страну или регион»</b>.</li>
       <li>Выберите новую страну или регион, затем просмотрите положения и условия.</li>
       <li>Нажмите <b>«Принимаю»</b> в верхнем правом углу, затем снова нажмите <b>«Принимаю»</b> для подтверждения.</li>
-      <li>Выберите способ оплаты, введите новую платёжную информацию и адрес выставления счетов, затем нажмите <b>«Далее»</b>. Возможно, потребуется ввести действительный способ оплаты для новой страны или региона.</li>
+      <li>На экране «Дополните Apple ID» в качестве способа оплаты выберите <b>«Нет»</b> — карта не нужна. Заполните получателя счёта и адрес (можно скопировать пример ниже) и нажмите <b>«Далее»</b>.</li>
     </ol>
+
+    <div class="fillcard">
+      <div class="fillcard-title">Что вписать на экране «Дополните Apple ID»</div>
+      <div class="fill-row">
+        <span class="fill-label">Способ оплаты</span>
+        <span class="fill-value">Нет</span>
+      </div>
+      <div class="fill-row"><span class="fill-label">Имя</span><span class="fill-value" data-copy="Ivan">Ivan</span><button class="copy-btn" type="button">Копировать</button></div>
+      <div class="fill-row"><span class="fill-label">Фамилия</span><span class="fill-value" data-copy="Ivanov">Ivanov</span><button class="copy-btn" type="button">Копировать</button></div>
+      <div class="fill-row"><span class="fill-label">Адрес</span><span class="fill-value" data-copy="2438 6th Ave">2438 6th Ave</span><button class="copy-btn" type="button">Копировать</button></div>
+      <div class="fill-row"><span class="fill-label">Город</span><span class="fill-value" data-copy="Ketchikan">Ketchikan</span><button class="copy-btn" type="button">Копировать</button></div>
+      <div class="fill-row"><span class="fill-label">Штат</span><span class="fill-value" data-copy="Аляска">Аляска</span><button class="copy-btn" type="button">Копировать</button></div>
+      <div class="fill-row"><span class="fill-label">Индекс</span><span class="fill-value" data-copy="99901">99901</span><button class="copy-btn" type="button">Копировать</button></div>
+      <div class="fill-row"><span class="fill-label">Телефон</span><span class="fill-value" data-copy="907 2259273">907 2259273</span><button class="copy-btn" type="button">Копировать</button></div>
+    </div>
+    <p class="warn">Это пример адреса реального населённого пункта (Кетчикан, Аляска) — только чтобы форма приняла корректный набор город/штат/индекс. Никакая доставка по нему не происходит: способ оплаты «Нет» — карта не привязывается и не списывается.</p>
 
     <p class="warn">У Apple есть ограничения по частоте смены региона одного аккаунта — не меняйте его туда-обратно без необходимости. Полная официальная инструкция — на <a href="https://support.apple.com/ru-ru/118283" target="_blank" rel="noopener">сайте Apple →</a>.</p>
 
@@ -114,5 +139,28 @@
       <a href="../chatgpt/">Как оплатить подписку ChatGPT через PayXO →</a>
     </div>
   </main>
+
+<script>
+(function(){
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var value = btn.previousElementSibling.getAttribute('data-copy');
+      var reset = function(){ btn.textContent = 'Копировать'; btn.classList.remove('copied'); };
+      var mark = function(){ btn.textContent = 'Скопировано'; btn.classList.add('copied'); setTimeout(reset, 1200); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(mark, mark);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = value;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        mark();
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
