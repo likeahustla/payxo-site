@@ -193,6 +193,15 @@
   .foot-logo{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:20px; }
   .foot-note{ color:var(--dim); font-size:13px; margin-top:8px; }
   .foot-links{ display:flex; gap:12px; flex-wrap:wrap; }
+  .foot-legal{ padding-top:0; }
+  .foot-legal-links{ display:flex; gap:8px 20px; flex-wrap:wrap; }
+  .foot-legal-links a{ color:var(--dim); font-size:13px; }
+  .foot-legal-links a:hover{ color:var(--lime); }
+
+  .cookie-banner{ position:fixed; left:16px; right:16px; bottom:16px; z-index:999; max-width:560px; margin:0 auto; background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:18px 20px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; box-shadow:0 12px 40px rgba(0,0,0,.4); }
+  .cookie-banner p{ margin:0; flex:1 1 240px; color:var(--dim2); font-size:13.5px; line-height:1.5; }
+  .cookie-banner .btn-lime{ padding:10px 20px; font-size:14px; flex-shrink:0; }
+  .cookie-banner[hidden]{ display:none; }
 
   [data-reveal]{ opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .7s cubic-bezier(.22,1,.36,1); }
   [data-reveal].in{ opacity:1; transform:none; }
@@ -442,11 +451,23 @@
       <div class="foot-links">
         <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-outline btn-outline-sm">Telegram-бот</a>
         <a href="./guides/" class="btn-outline btn-outline-sm">Гайды</a>
-        <a href="./legal.html" class="btn-outline btn-outline-sm">Правовые документы</a>
         <a href="https://t.me/payxo_support" target="_blank" rel="noopener" class="btn-outline btn-outline-sm">Поддержка</a>
       </div>
     </div>
+    <div class="foot-in foot-legal">
+      <div class="foot-legal-links">
+        <a href="./legal/oferta/">Оферта</a>
+        <a href="./legal/vozvrat/">Возврат</a>
+        <a href="./legal/privacy/">Персональные данные</a>
+        <a href="./legal/">Все документы</a>
+      </div>
+    </div>
   </footer>
+
+  <div id="cookie-banner" class="cookie-banner" hidden>
+    <p>Мы используем cookie. Продолжая использовать сайт, вы соглашаетесь с <a href="./legal/cookie/">Политикой cookie</a>.</p>
+    <button type="button" id="cookie-accept" class="btn-lime btn-outline-sm">Понятно</button>
+  </div>
 </div>
 
 <script>
@@ -512,6 +533,17 @@
         el.style.translate = '0 ' + (y * f).toFixed(1) + 'px';
       });
     }, { passive:true });
+  }
+
+  var cookieBanner = document.getElementById('cookie-banner');
+  if (cookieBanner) {
+    if (!localStorage.getItem('payxo_cookie_accepted')) {
+      cookieBanner.hidden = false;
+    }
+    document.getElementById('cookie-accept').addEventListener('click', function(){
+      localStorage.setItem('payxo_cookie_accepted', '1');
+      cookieBanner.hidden = true;
+    });
   }
 })();
 </script>
