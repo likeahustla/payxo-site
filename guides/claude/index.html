@@ -44,6 +44,8 @@
   h1{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:clamp(30px,4.5vw,44px); line-height:1.15; margin:20px 0 0; }
   .lead{ color:var(--dim2); font-size:16px; line-height:1.6; margin:18px 0 0; max-width:620px; }
   .note{ margin-top:20px; background:var(--card); border:1px solid var(--card-border); border-left:3px solid var(--lavender); border-radius:12px; padding:16px 20px; color:var(--dim2); font-size:14px; line-height:1.55; }
+  .btn-note{ display:inline-flex; align-items:center; gap:6px; margin-top:12px; border:1.5px solid var(--lime); color:var(--lime); font-weight:600; font-size:13px; padding:7px 16px; border-radius:999px; transition:background .2s, color .2s; }
+  .btn-note:hover{ background:var(--lime); color:var(--ink); }
 
   .steps{ display:grid; gap:16px; margin-top:48px; }
   .step-card{ position:relative; background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:28px 28px 28px 92px; }
@@ -83,8 +85,11 @@
   <main>
     <span class="eyebrow"><img src="https://cdn.simpleicons.org/claude/D97757" alt="">Claude</span>
     <h1>Как оплатить подписку Claude через бот PayXO</h1>
-    <p class="lead">Подписка Claude Pro или Max оформляется через ваш Apple ID на iPhone. PayXO продаёт пополнение баланса Apple ID нужного региона: вы пополняете баланс, а подписку оформляете сами в официальном приложении Claude.</p>
-    <p class="note">Нужен iPhone с Apple ID зарубежного региона — мы рекомендуем США или Турцию, но подойдёт любой регион, кроме России. Не уверены в своём регионе или хотите его сменить — разверните подсказки ниже.</p>
+    <p class="lead">Подписка Claude Pro или Max оформляется через ваш Apple ID на iPhone. PayXO продаёт пополнение баланса Apple ID нужного региона: вы пополняете баланс, а подписку оформляете сами в <a href="https://apps.apple.com/app/claude-by-anthropic/id6473753684" target="_blank" rel="noopener">официальном приложении Claude</a>.</p>
+    <div class="note">
+      <p style="margin:0">Нужен iPhone с Apple ID зарубежного региона — мы рекомендуем США или Турцию, но подойдёт любой регион, кроме России. Проверить свой регион можно в подсказке ниже, а сменить — по нашей пошаговой инструкции.</p>
+      <a href="../smena-regiona-appstore/" class="btn-note">Как сменить регион App Store →</a>
+    </div>
 
     <div class="faq">
       <div class="faq-item">
@@ -96,35 +101,13 @@
           <p class="faq-a">Чтобы проверить регион вашего аккаунта Apple ID, откройте «Настройки» ➔ нажмите на своё имя ➔ «Контент и покупки» ➔ «Просмотреть» ➔ «Страна/регион».</p>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" type="button">
-          <span>Как поменять регион Apple ID?</span>
-          <span class="faq-icon">✕</span>
-        </button>
-        <div class="faq-a-wrap">
-          <div class="faq-a">
-            <ol>
-              <li>Откройте приложение «Настройки».</li>
-              <li>Нажмите на своё имя, а затем — «Контент и покупки».</li>
-              <li>Нажмите «Просмотреть». Может потребоваться выполнить вход.</li>
-              <li>Нажмите «Страна/регион».</li>
-              <li>Выберите новую страну или регион.</li>
-              <li>Нажмите «Изменить страну или регион».</li>
-              <li>Выберите новую страну или регион, затем просмотрите положения и условия.</li>
-              <li>Нажмите «Принимаю» в верхнем правом углу, затем снова нажмите «Принимаю» для подтверждения.</li>
-              <li>Выберите способ оплаты, введите новую платёжную информацию и адрес выставления счетов, затем нажмите «Далее». Возможно, вам потребуется ввести действительный способ оплаты для новой страны или региона.</li>
-            </ol>
-            <a class="apple-link" href="../smena-regiona-appstore/">Подробная инструкция с картинками →</a>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="steps">
       <div class="step-card">
         <div class="step-num">01</div>
         <div class="step-title">Узнайте цену подписки в приложении Claude</div>
-        <div class="step-desc">Откройте официальное приложение Claude → Настройки → Подписка. Посмотрите цену Pro или Max именно в вашем регионе — она понадобится на следующем шаге. Цена отличается от региона к региону и может меняться, поэтому смотрите её в приложении.</div>
+        <div class="step-desc">Откройте <a href="https://apps.apple.com/app/claude-by-anthropic/id6473753684" target="_blank" rel="noopener">официальное приложение Claude</a> → Настройки → Подписка. Посмотрите цену Pro или Max именно в вашем регионе — она понадобится на следующем шаге. Цена отличается от региона к региону и может меняться, поэтому смотрите её в приложении.</div>
       </div>
       <div class="step-card">
         <div class="step-num">02</div>
@@ -175,7 +158,7 @@
           <span class="faq-icon">✕</span>
         </button>
         <div class="faq-a-wrap">
-          <p class="faq-a">Да, но у Apple есть ограничения по частоте смены региона — посмотрите подсказку «Как поменять регион Apple ID?» выше, прежде чем менять туда-обратно.</p>
+          <p class="faq-a">Да, но у Apple есть ограничения по частоте смены региона — прочитайте <a href="../smena-regiona-appstore/">инструкцию по смене региона</a>, прежде чем менять туда-обратно.</p>
         </div>
       </div>
     </div>
