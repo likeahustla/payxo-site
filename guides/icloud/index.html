@@ -44,8 +44,6 @@
   h1{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:clamp(30px,4.5vw,44px); line-height:1.15; margin:20px 0 0; }
   .lead{ color:var(--dim2); font-size:16px; line-height:1.6; margin:18px 0 0; max-width:620px; }
   .note{ margin-top:20px; background:var(--card); border:1px solid var(--card-border); border-left:3px solid var(--lavender); border-radius:12px; padding:16px 20px; color:var(--dim2); font-size:14px; line-height:1.55; }
-  .btn-note{ display:inline-flex; align-items:center; gap:6px; margin-top:12px; border:1.5px solid var(--lime); color:var(--lime); font-weight:600; font-size:13px; padding:7px 16px; border-radius:999px; transition:background .2s, color .2s; }
-  .btn-note:hover{ background:var(--lime); color:var(--ink); }
 
   .steps{ display:grid; gap:16px; margin-top:48px; }
   .step-card{ position:relative; background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:28px 28px 28px 92px; }
@@ -86,10 +84,7 @@
     <span class="eyebrow"><img src="https://cdn.simpleicons.org/icloud/FFFFFF" alt="">iCloud+</span>
     <h1>Как оплатить iCloud+ через бот PayXO</h1>
     <p class="lead">Подписка iCloud+ (расширенное хранилище iCloud) оформляется через ваш Apple ID прямо в настройках iPhone. PayXO продаёт пополнение баланса Apple ID нужного региона: вы пополняете баланс, а тариф выбираете сами в настройках устройства.</p>
-    <div class="note">
-      <p style="margin:0">Нужен iPhone с Apple ID зарубежного региона — мы рекомендуем США или Турцию, но подойдёт любой регион, кроме России. Проверить свой регион можно в подсказке ниже, а сменить — по нашей пошаговой инструкции.</p>
-      <a href="../smena-regiona-appstore/" class="btn-note">Как сменить регион App Store →</a>
-    </div>
+    <p class="note">Менять регион Apple ID для оплаты iCloud+ не нужно — тариф оплачивается с баланса Apple ID любого региона. Главное — пополнить баланс именно того региона, который стоит у вашего аккаунта. Проверить его можно в подсказке ниже.</p>
 
     <div class="faq">
       <div class="faq-item">
@@ -154,11 +149,11 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button">
-          <span>Регион можно менять обратно?</span>
+          <span>Нужно ли менять регион Apple ID?</span>
           <span class="faq-icon">✕</span>
         </button>
         <div class="faq-a-wrap">
-          <p class="faq-a">Да, но у Apple есть ограничения по частоте смены региона — прочитайте <a href="../smena-regiona-appstore/">инструкцию по смене региона</a>, прежде чем менять туда-обратно. Учтите: файлы в iCloud при смене региона сохраняются, но активная подписка iCloud+ привязана к балансу и региону аккаунта.</p>
+          <p class="faq-a">Для iCloud+ — нет: тариф оплачивается с баланса Apple ID в любом регионе. Смена региона нужна только если вы хотите оформлять зарубежные подписки вроде ChatGPT или Suno — тогда посмотрите <a href="../smena-regiona-appstore/">инструкцию по смене региона</a>. Учтите: файлы в iCloud при смене региона сохраняются, но подписка iCloud+ привязана к балансу и региону аккаунта.</p>
         </div>
       </div>
     </div>
