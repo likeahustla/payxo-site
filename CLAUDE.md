@@ -23,8 +23,9 @@ Each page's `<style>` redefines the same CSS custom-property palette (`--ink`, `
 
 ## Analytics
 
-- **Yandex Metrika** counter `111606678` (Webvisor + clickmap + ecommerce dataLayer enabled) is embedded in every page's `<head>`.
-- **CTA click tracking**: every "Open bot" link (`t.me/payxo_bot`) carries a `data-analytics="<location>"` attribute; a shared inline script (appended before `</body>` on each page) fires `ym(111606678, 'reachGoal', 'open_bot_click', {location: ...})` on click. Goal `open_bot_click` (goal id `597461960`) is registered in the Metrika counter via the Management API.
+- **Yandex Metrika** counter `111606678` (Webvisor + clickmap + ecommerce dataLayer enabled) is embedded in every page's `<head>`, but **gated on cookie consent**: the snippet only defines `window.payxoInitMetrika()` and calls it immediately if `localStorage.getItem('payxo_cookie_consent') === 'accepted'` from a prior visit. It does not fire unconditionally on page load.
+- **Cookie banner** (`#cookie-banner`, near `</body>` on every page) has two buttons — `#cookie-accept` and `#cookie-decline`. Accept sets `payxo_cookie_consent = 'accepted'` and calls `window.payxoInitMetrika()`; decline sets it to `'declined'` and never loads Metrika. The banner stays hidden once either choice is stored, so Metrika only ever runs after explicit opt-in.
+- **CTA click tracking**: every "Open bot" link (`t.me/payxo_bot`) carries a `data-analytics="<location>"` attribute; a shared inline script (appended before `</body>` on each page) fires `ym(111606678, 'reachGoal', 'open_bot_click', {location: ...})` on click — this only does anything once `ym` actually exists, i.e. after consent. Goal `open_bot_click` (goal id `597461960`) is registered in the Metrika counter via the Management API.
 - **`.mcp.json`** registers a local `yandex-metrica` MCP server for querying/managing this counter (read + write scope token). **It is gitignored and must never be committed** — it holds a live OAuth token.
 - Yandex Metrika Management API note: the documented condition `type` value for JS-event ("action") goals is `"action"` per the official docs, but the live API actually requires `"exact"` — the docs are wrong on this point.
 
