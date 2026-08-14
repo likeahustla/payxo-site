@@ -193,6 +193,19 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   .step-title{ font-weight:700; font-size:19px; margin-top:16px; }
   .step-desc{ color:var(--dim); font-size:15px; line-height:1.6; margin-top:10px; }
 
+  .guides-scroll{ display:flex; gap:20px; margin-top:40px; overflow-x:auto; scroll-snap-type:x proximity; padding:4px 4px 16px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:var(--card-border) transparent; }
+  .guides-scroll::-webkit-scrollbar{ height:6px; }
+  .guides-scroll::-webkit-scrollbar-thumb{ background:var(--card-border); border-radius:999px; }
+  .guide-mini-card{ position:relative; flex:0 0 250px; scroll-snap-align:start; display:block; background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:24px; color:var(--milk); transition:transform .2s, border-color .2s; }
+  .guide-mini-card:hover{ transform:translateY(-4px); border-color:var(--lime); }
+  .guide-mini-icon{ position:absolute; top:20px; right:20px; width:30px; height:30px; display:flex; align-items:center; justify-content:center; }
+  .guide-mini-icon img{ width:30px; height:30px; object-fit:contain; }
+  .guide-mini-icon img.invert{ filter:invert(1); }
+  .guide-mini-icon img.tile{ border-radius:8px; }
+  .guide-mini-tag{ min-height:30px; display:flex; align-items:center; padding-right:40px; font-size:12px; font-weight:600; color:var(--dim); text-transform:uppercase; letter-spacing:.04em; }
+  .guide-mini-card h3{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:16px; line-height:1.3; margin:8px 0 0; }
+  .guide-mini-card p{ color:var(--dim); font-size:13px; line-height:1.5; margin-top:8px; }
+
   .review-card{ background:var(--card); border:1px solid var(--card-border); border-radius:20px; padding:28px; }
   .stars{ color:var(--lime); font-size:15px; letter-spacing:2px; }
   .review-text{ font-size:15px; line-height:1.6; color:var(--dim2); margin:16px 0 0; }
@@ -455,6 +468,52 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
         <div class="step-title">Получи в Telegram</div>
         <div class="step-desc">Код или активация подписки придут в чат моментально</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ГАЙДЫ -->
+  <section id="guides">
+    <div class="sec-head" data-reveal="0">
+      <h2>Гайды и инструкции</h2>
+      <span class="sec-sub">как оплачивать сервисы</span>
+    </div>
+    <div class="guides-scroll" data-reveal="1">
+      <a class="guide-mini-card" href="./guides/chatgpt/">
+        <div class="guide-mini-icon"><img src="./icons/openai-white.svg" alt="ChatGPT" /></div>
+        <div class="guide-mini-tag">Подписки</div>
+        <h3>Как оплатить ChatGPT</h3>
+        <p>Оформление подписки в приложении ChatGPT</p>
+      </a>
+      <a class="guide-mini-card" href="./guides/claude/">
+        <div class="guide-mini-icon"><img src="./icons/claude.svg" alt="Claude" /></div>
+        <div class="guide-mini-tag">Подписки</div>
+        <h3>Как оплатить Claude</h3>
+        <p>Подписка Pro или Max в приложении Claude</p>
+      </a>
+      <a class="guide-mini-card" href="./guides/suno/">
+        <div class="guide-mini-icon"><img class="tile" src="./icons/suno.png" alt="Suno" /></div>
+        <div class="guide-mini-tag">Подписки</div>
+        <h3>Как оплатить Suno</h3>
+        <p>Подписка Pro или Premier в приложении Suno</p>
+      </a>
+      <a class="guide-mini-card" href="./guides/icloud/">
+        <div class="guide-mini-icon"><img src="./icons/icloud.svg" alt="iCloud" /></div>
+        <div class="guide-mini-tag">Подписки</div>
+        <h3>Как оплатить iCloud+</h3>
+        <p>Тариф iCloud+ без смены региона</p>
+      </a>
+      <a class="guide-mini-card" href="./guides/smena-regiona-appstore/">
+        <div class="guide-mini-icon"><img src="./icons/appstore.svg" alt="App Store" /></div>
+        <div class="guide-mini-tag">Apple ID</div>
+        <h3>Как сменить регион App Store</h3>
+        <p>Смена страны аккаунта Apple ID на iPhone</p>
+      </a>
+      <a class="guide-mini-card" href="./guides/spisanie-ostatka-apple/">
+        <div class="guide-mini-icon"><img class="invert" src="./icons/apple.svg" alt="Apple" /></div>
+        <div class="guide-mini-tag">Apple ID</div>
+        <h3>Как списать остаток с баланса Apple</h3>
+        <p>Обнуление остатка через поддержку Apple</p>
+      </a>
     </div>
   </section>
 

@@ -82,9 +82,13 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   .step-desc a{ font-weight:600; }
 
   .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:20px; }
-  .guide-card{ display:block; background:var(--card); border:1px solid var(--card-border); border-radius:18px; padding:22px; color:var(--milk); transition:transform .2s, border-color .2s; }
+  .guide-card{ position:relative; display:block; background:var(--card); border:1px solid var(--card-border); border-radius:18px; padding:22px; color:var(--milk); transition:transform .2s, border-color .2s; }
   .guide-card:hover{ transform:translateY(-3px); border-color:var(--lime); }
-  .guide-tag{ font-size:12px; font-weight:600; color:var(--dim); text-transform:uppercase; letter-spacing:.04em; }
+  .guide-icon{ position:absolute; top:18px; right:18px; width:28px; height:28px; display:flex; align-items:center; justify-content:center; }
+  .guide-icon img{ width:28px; height:28px; object-fit:contain; }
+  .guide-icon img.invert{ filter:invert(1); }
+  .guide-icon img.tile{ border-radius:7px; }
+  .guide-tag{ min-height:28px; display:flex; align-items:center; padding-right:36px; font-size:12px; font-weight:600; color:var(--dim); text-transform:uppercase; letter-spacing:.04em; }
   .guide-card h3{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:17px; margin:8px 0 0; }
   .guide-card p{ color:var(--dim); font-size:13.5px; line-height:1.5; margin-top:8px; }
 
@@ -287,21 +291,25 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
     <h2 class="steps-title">Пошаговые гайды по сервисам</h2>
     <div class="grid">
       <a class="guide-card" href="../chatgpt/">
+        <div class="guide-icon"><img src="../../icons/openai-white.svg" alt="ChatGPT" /></div>
         <div class="guide-tag">Подписка</div>
         <h3>ChatGPT</h3>
         <p>Оплата подписки ChatGPT через пополнение Apple ID.</p>
       </a>
       <a class="guide-card" href="../claude/">
+        <div class="guide-icon"><img src="../../icons/claude.svg" alt="Claude" /></div>
         <div class="guide-tag">Подписка</div>
         <h3>Claude</h3>
         <p>Оплата Claude Pro или Max через пополнение Apple ID.</p>
       </a>
       <a class="guide-card" href="../suno/">
+        <div class="guide-icon"><img class="tile" src="../../icons/suno.png" alt="Suno" /></div>
         <div class="guide-tag">Подписка</div>
         <h3>Suno</h3>
         <p>Оплата Suno Pro или Premier через пополнение Apple ID.</p>
       </a>
       <a class="guide-card" href="../icloud/">
+        <div class="guide-icon"><img src="../../icons/icloud.svg" alt="iCloud" /></div>
         <div class="guide-tag">Подписка</div>
         <h3>iCloud+</h3>
         <p>Оплата тарифа iCloud+ без смены региона Apple ID.</p>
