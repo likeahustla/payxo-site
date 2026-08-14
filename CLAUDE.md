@@ -21,6 +21,8 @@ There is no build system — no `package.json`, no bundler, no test runner. Page
 
 Each page's `<style>` redefines the same CSS custom-property palette (`--ink`, `--lime`, `--card`, `--card-border`, `--dim`, etc.) — keep names/values consistent with the existing pages when adding a new one.
 
+**Internal links never include `index.html`.** Every logo/breadcrumb/back-button link points at a directory (`../../`, `../`, `./`), not the file (`../../index.html`) — GitHub Pages serves the `index.html` inside a directory automatically, so the extra filename only showed up in the address bar after a click for no reason. Keep new internal links directory-style; don't reintroduce `index.html` in an `href`.
+
 ## Analytics
 
 - **Yandex Metrika** counter `111606678` (Webvisor + clickmap + ecommerce dataLayer enabled) is embedded in every page's `<head>`, but **gated on cookie consent**: the snippet only defines `window.payxoInitMetrika()` and calls it immediately if `localStorage.getItem('payxo_cookie_consent') === 'accepted'` from a prior visit. It does not fire unconditionally on page load.
@@ -28,6 +30,11 @@ Each page's `<style>` redefines the same CSS custom-property palette (`--ink`, `
 - **CTA click tracking**: every "Open bot" link (`t.me/payxo_bot`) carries a `data-analytics="<location>"` attribute; a shared inline script (appended before `</body>` on each page) fires `ym(111606678, 'reachGoal', 'open_bot_click', {location: ...})` on click — this only does anything once `ym` actually exists, i.e. after consent. Goal `open_bot_click` (goal id `597461960`) is registered in the Metrika counter via the Management API.
 - **`.mcp.json`** registers a local `yandex-metrica` MCP server for querying/managing this counter (read + write scope token). **It is gitignored and must never be committed** — it holds a live OAuth token.
 - Yandex Metrika Management API note: the documented condition `type` value for JS-event ("action") goals is `"action"` per the official docs, but the live API actually requires `"exact"` — the docs are wrong on this point.
+
+## Workflow
+
+- After a commit that changes architecture, analytics behavior, or any other fact this file documents, update the relevant section of `CLAUDE.md` in the same commit (or an immediate follow-up commit) — don't let it drift out of sync with what the code actually does.
+- After committing, push to `origin main` right away unless the user says to hold off — don't leave commits sitting local-only. GitHub Pages only rebuilds from what's actually pushed.
 
 ## SEO / AI discoverability
 
