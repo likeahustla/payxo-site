@@ -6,6 +6,7 @@ PayXO продаёт пополнение баланса Apple ID нужного
 
 ## Гайды
 
+- [Как оплатить зарубежные сервисы из России](https://payxo.ru/guides/kak-oplatit-zarubezhnye-servisy/): общий принцип оплаты ChatGPT, Claude, Suno, iCloud+ и других сервисов через пополнение Apple ID вместо банковской карты.
 - [Как оплатить подписку ChatGPT через PayXO](https://payxo.ru/guides/chatgpt/): пополнение Apple ID нужного региона и оформление подписки ChatGPT в официальном приложении.
 - [Как оплатить подписку Claude через PayXO](https://payxo.ru/guides/claude/): пополнение Apple ID нужного региона и оформление подписки Claude Pro или Max в официальном приложении Claude.
 - [Как оплатить подписку Suno через PayXO](https://payxo.ru/guides/suno/): пополнение Apple ID нужного региона и оформление подписки Suno Pro или Premier.
