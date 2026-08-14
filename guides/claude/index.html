@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111606678', 'ym');
+
+    ym(111606678, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/111606678" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="../../favicon.ico" sizes="any" />
@@ -9,11 +23,22 @@
 <link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png" />
 <title>Как оплатить подписку Claude через PayXO</title>
 <meta name="description" content="Пошаговая инструкция: как купить подписку Claude Pro или Max через пополнение Apple ID в PayXO." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="author" content="PayXO" />
 <link rel="canonical" href="https://payxo.ru/guides/claude/" />
 <meta property="og:title" content="Как оплатить подписку Claude через PayXO" />
 <meta property="og:description" content="Пошаговая инструкция: как купить подписку Claude Pro или Max через пополнение Apple ID в PayXO." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://payxo.ru/guides/claude/" />
+<meta property="og:site_name" content="PayXO" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:image" content="https://payxo.ru/icons/favicon-512x512.png" />
+<meta property="og:image:width" content="512" />
+<meta property="og:image:height" content="512" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Как оплатить подписку Claude через PayXO" />
+<meta name="twitter:description" content="Пошаговая инструкция: как купить подписку Claude Pro или Max через пополнение Apple ID в PayXO." />
+<meta name="twitter:image" content="https://payxo.ru/icons/favicon-512x512.png" />
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -72,6 +97,115 @@
   .faq-a li{ margin-bottom:6px; }
   .faq-a .apple-link{ display:inline-block; margin-top:10px; font-weight:600; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "PayXO",
+      "url": "https://payxo.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://payxo.ru/icons/favicon-512x512.png"
+      },
+      "sameAs": [
+        "https://t.me/payxo_bot"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://payxo.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Гайды",
+          "item": "https://payxo.ru/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Claude",
+          "item": "https://payxo.ru/guides/claude/"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "Как оплатить Claude через PayXO",
+      "description": "Подписка Claude Pro или Max оформляется через ваш Apple ID на iPhone. PayXO продаёт пополнение баланса Apple ID нужного региона: вы пополняете баланс, а подписку оформляете сами в официальном приложении Claude.",
+      "inLanguage": "ru-RU",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Узнайте цену подписки в приложении Claude",
+          "text": "Откройте официальное приложение Claude → Настройки → Подписка. Посмотрите цену Pro или Max именно в вашем регионе — она понадобится на следующем шаге. Цена отличается от региона к региону и может меняться, поэтому смотрите её в приложении."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Купите пополнение Apple ID в PayXO",
+          "text": "В боте @payxo_bot откройте Каталог → Подписки → Apple, выберите тот же регион, что и у вашего Apple ID, и номинал, равный цене подписки."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Оплатите и активируйте код",
+          "text": "После оплаты бот пришлёт код и кнопку «Активировать на этом устройстве» — нажмите её. Баланс Apple ID пополнится автоматически."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Оформите подписку в Claude",
+          "text": "Вернитесь в приложение Claude и оформите Pro или Max — сумма спишется с пополненного баланса Apple ID, без карты и без комиссий."
+        }
+      ],
+      "datePublished": "2026-07-17",
+      "dateModified": "2026-08-10"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Как узнать регион Apple ID?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Чтобы проверить регион вашего аккаунта Apple ID, откройте «Настройки» → нажмите на своё имя → «Контент и покупки» → «Просмотреть» → «Страна/регион»."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Что если я куплю не тот номинал?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Деньги останутся на балансе Apple ID — просто в следующий раз докупите разницу тем же способом."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно активировать код на другой iPhone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, чтобы активировать код пополнения Apple на другом iPhone, откройте приложение App Store, нажмите на фото профиля в правом верхнем углу, выберите пункт «Погасить подарочную карту или код» (Redeem Gift Card or Code), нажмите «Ввести код вручную» (Enter Code Manually), введите 16-значный код, который прислал вам бот, и подтвердите действие."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Регион можно менять обратно?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, но у Apple есть ограничения по частоте смены региона — прочитайте инструкцию по смене региона на payxo.ru, прежде чем менять туда-обратно."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
   <header>
@@ -129,7 +263,7 @@
     <div class="cta">
       <div style="font-family:'Unbounded',sans-serif;font-weight:600;font-size:20px">Готовы начать?</div>
       <p>Откройте бота и выберите регион своего Apple ID</p>
-      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime">Открыть @payxo_bot</a>
+      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime" data-analytics="guide_cta">Открыть @payxo_bot</a>
     </div>
 
     <div class="faq">
@@ -174,6 +308,15 @@
         items.forEach(function(o){ o.classList.remove('open'); });
         if (!wasOpen) item.classList.add('open');
       });
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('[data-analytics]').forEach(function(el){
+    el.addEventListener('click', function(){
+      if (window.ym) { ym(111606678, 'reachGoal', 'open_bot_click', {location: el.getAttribute('data-analytics')}); }
     });
   });
 })();

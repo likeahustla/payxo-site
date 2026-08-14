@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111606678', 'ym');
+
+    ym(111606678, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/111606678" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="./favicon.ico" sizes="any" />
@@ -9,9 +23,22 @@
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
 <title>PayXO — гифт-карты и цифровые коды зарубежных сервисов</title>
 <meta name="description" content="ChatGPT, Apple ID, Steam, гифт-карты и Telegram Premium. Оплачиваешь рублями по СБП — получаешь код или активацию моментально в Telegram." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="author" content="PayXO" />
+<link rel="canonical" href="https://payxo.ru/" />
 <meta property="og:title" content="PayXO — гифт-карты и цифровые коды зарубежных сервисов" />
-<meta property="og:description" content="ChatGPT, Apple ID, Steam, гифт-карты и Telegram Premium — в одном Telegram-боте. Оплата по СБП, выдача моментально." />
+<meta property="og:description" content="ChatGPT, Apple ID, Steam, гифт-карты и Telegram Premium. Оплачиваешь рублями по СБП — получаешь код или активацию моментально в Telegram." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://payxo.ru/" />
+<meta property="og:site_name" content="PayXO" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:image" content="https://payxo.ru/icons/favicon-512x512.png" />
+<meta property="og:image:width" content="512" />
+<meta property="og:image:height" content="512" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="PayXO — гифт-карты и цифровые коды зарубежных сервисов" />
+<meta name="twitter:description" content="ChatGPT, Apple ID, Steam, гифт-карты и Telegram Premium. Оплачиваешь рублями по СБП — получаешь код или активацию моментально в Telegram." />
+<meta name="twitter:image" content="https://payxo.ru/icons/favicon-512x512.png" />
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css2?family=Unbounded:wght@400;600;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -211,6 +238,37 @@
   [data-reveal].in{ opacity:1; transform:none; }
   @media (prefers-reduced-motion: reduce){ [data-reveal]{ opacity:1 !important; transform:none !important; } }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "PayXO",
+      "url": "https://payxo.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://payxo.ru/icons/favicon-512x512.png"
+      },
+      "sameAs": [
+        "https://t.me/payxo_bot"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "name": "PayXO",
+      "url": "https://payxo.ru/",
+      "description": "ChatGPT, Apple ID, Steam, гифт-карты и Telegram Premium. Оплата рублями по СБП, выдача моментально в Telegram.",
+      "inLanguage": "ru-RU",
+      "publisher": {
+        "@type": "Organization",
+        "name": "PayXO",
+        "url": "https://payxo.ru/"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
   <!-- НАВБАР -->
@@ -224,7 +282,7 @@
         <a href="#faq">FAQ</a>
         <a href="./guides/">Гайды</a>
       </nav>
-      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime nav-cta">Открыть бот</a>
+      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime nav-cta" data-analytics="nav">Открыть бот</a>
     </div>
   </header>
 
@@ -238,7 +296,7 @@
       <h1 data-reveal="1">Оплачивай зарубежные<br>сервисы <span class="accent">рублями</span></h1>
       <p class="hero-sub" data-reveal="2">Подписки ChatGPT, App Store, Steam и других сервисов — оплата рублями по СБП</p>
       <div class="cta-row" data-reveal="3">
-        <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime btn-lg">Открыть бота в Telegram</a>
+        <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime btn-lg" data-analytics="hero">Открыть бота в Telegram</a>
         <a href="#how" class="btn-outline">Как это работает</a>
       </div>
       <div class="badge-row" data-reveal="4">
@@ -305,7 +363,7 @@
       <span class="sec-sub">выбери категорию</span>
     </div>
     <div class="grid">
-      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="catalog-card tilt-l" data-reveal="1">
+      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="catalog-card tilt-l" data-reveal="1" data-analytics="catalog_neural">
         <h3>Нейросети</h3>
         <p>ChatGPT, Claude, Higgsfield, Perplexity — коды активации подписки на твой аккаунт</p>
         <div class="catalog-icons">
@@ -315,7 +373,7 @@
           <img title="Perplexity" src="https://cdn.simpleicons.org/perplexity" alt="Perplexity">
         </div>
       </a>
-      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="catalog-card tilt-r" data-reveal="2">
+      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="catalog-card tilt-r" data-reveal="2" data-analytics="catalog_games">
         <h3>Оплата игр</h3>
         <p>Steam, PUBG, Roblox, PlayStation, Xbox — пополнение на любую сумму</p>
         <div class="catalog-icons">
@@ -325,7 +383,7 @@
           <img title="PlayStation" src="./icons/playstation.svg" alt="PlayStation">
         </div>
       </a>
-      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="catalog-card tilt-lime" data-reveal="3">
+      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="catalog-card tilt-lime" data-reveal="3" data-analytics="catalog_giftcards">
         <h3>Гифт-карты</h3>
         <p>App Store, Netflix, Spotify, Google Play и ещё 20+ сервисов</p>
         <div class="catalog-icons">
@@ -335,7 +393,7 @@
           <img title="Google Play" src="./icons/googleplay.svg" alt="Google Play">
         </div>
       </a>
-      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="catalog-card tilt-r" data-reveal="4">
+      <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="catalog-card tilt-r" data-reveal="4" data-analytics="catalog_telegram">
         <h3>Telegram</h3>
         <p>Telegram Premium и Telegram Stars — на твой аккаунт по юзернейму</p>
         <div class="catalog-icons">
@@ -440,7 +498,7 @@
       <h2>Готов? Бот уже ждёт</h2>
       <p>Каталог, оплата и выдача — всё в одном боте. Первый заказ займёт две минуты.</p>
       <div class="cta-row">
-        <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime btn-lg">Открыть @payxo_bot</a>
+        <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-lime btn-lg" data-analytics="final_cta">Открыть @payxo_bot</a>
       </div>
     </div>
   </div>
@@ -453,7 +511,7 @@
         <div class="foot-note">© 2026 PayXO · Цифровые товары без границ</div>
       </div>
       <div class="foot-links">
-        <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-outline btn-outline-sm">Telegram-бот</a>
+        <a href="https://t.me/payxo_bot" target="_blank" rel="noopener" class="btn-outline btn-outline-sm" data-analytics="footer">Telegram-бот</a>
         <a href="./guides/" class="btn-outline btn-outline-sm">Гайды</a>
         <a href="https://t.me/payxo_support" target="_blank" rel="noopener" class="btn-outline btn-outline-sm">Поддержка</a>
       </div>
@@ -549,6 +607,15 @@
       cookieBanner.hidden = true;
     });
   }
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('[data-analytics]').forEach(function(el){
+    el.addEventListener('click', function(){
+      if (window.ym) { ym(111606678, 'reachGoal', 'open_bot_click', {location: el.getAttribute('data-analytics')}); }
+    });
+  });
 })();
 </script>
 </body>
