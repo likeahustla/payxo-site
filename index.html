@@ -78,7 +78,7 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   /* nav */
   header{ position:sticky; top:0; z-index:50; background:rgba(11,11,14,0.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--line-soft); }
   .nav-in{ max-width:1200px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
-  .logo{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:22px; }
+  .logo{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:22px; color:var(--milk); }
   .logo span{ color:var(--lime); }
   .nav-links{ display:flex; gap:28px; font-size:15px; color:var(--dim2); }
   .nav-links a{ color:var(--dim2); transition:color .2s; }
@@ -277,7 +277,7 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   <!-- НАВБАР -->
   <header>
     <div class="nav-in">
-      <div class="logo">Pay<span>XO</span></div>
+      <a href="./" class="logo">Pay<span>XO</span></a>
       <nav class="nav-links">
         <a href="#catalog">Каталог</a>
         <a href="#how">Как это работает</a>
