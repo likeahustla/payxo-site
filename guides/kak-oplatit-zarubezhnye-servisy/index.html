@@ -108,8 +108,10 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   .related a:hover{ border-color:var(--lime); }
   .related a + a{ margin-top:12px; }
   .cookie-banner{ position:fixed; left:16px; right:16px; bottom:16px; z-index:999; max-width:560px; margin:0 auto; background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:18px 20px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; box-shadow:0 12px 40px rgba(0,0,0,.4); }
-  .cookie-banner p{ margin:0; flex:1 1 240px; color:var(--dim2); font-size:13.5px; line-height:1.5; }
+  .cookie-banner p{ margin:0; flex:1 1 220px; color:var(--dim2); font-size:13px; line-height:1.45; }
   .cookie-banner .btn-lime, .cookie-banner .btn-outline{ padding:10px 20px; font-size:14px; flex-shrink:0; }
+  .cookie-banner .btn-outline{ background:var(--ink); color:var(--lime); border-color:var(--line); }
+  .cookie-banner .btn-outline:hover{ border-color:var(--lime); color:var(--lime-hover); }
   .cookie-banner[hidden]{ display:none; }
 </style>
 <script type="application/ld+json">
@@ -403,7 +405,7 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
 })();
 </script>
   <div id="cookie-banner" class="cookie-banner" hidden>
-    <p>Мы используем cookie: технические — всегда, аналитические (Яндекс.Метрика) — только с вашего согласия. Подробнее — <a href="../../legal/cookie/">Политика cookie</a>.</p>
+    <p>Используем cookie: технические — всегда, аналитику — только с вашего согласия. <a href="../../legal/cookie/">Подробнее</a>.</p>
     <button type="button" id="cookie-decline" class="btn-outline">Отклонить</button>
     <button type="button" id="cookie-accept" class="btn-lime">Принять</button>
   </div>
