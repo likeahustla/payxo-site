@@ -23,6 +23,8 @@ Each page's `<style>` redefines the same CSS custom-property palette (`--ink`, `
 
 **Internal links never include `index.html`.** Every logo/breadcrumb/back-button link points at a directory (`../../`, `../`, `./`), not the file (`../../index.html`) — GitHub Pages serves the `index.html` inside a directory automatically, so the extra filename only showed up in the address bar after a click for no reason. Keep new internal links directory-style; don't reintroduce `index.html` in an `href`.
 
+**Bot in-app navigation path for Apple ID top-ups is `Каталог → Пополняй AppStore`** — several guides (ChatGPT, Claude, Suno, iCloud+, the pillar guide) describe this step in a `step-desc` div and in the matching `HowTo` JSON-LD `text` field; both copies must be kept in sync with the bot's actual menu wording if it changes again.
+
 ## Analytics
 
 - **Yandex Metrika** counter `111606678` (Webvisor + clickmap + ecommerce dataLayer enabled) is embedded in every page's `<head>`, but **gated on cookie consent**: the snippet only defines `window.payxoInitMetrika()` and calls it immediately if `localStorage.getItem('payxo_cookie_consent') === 'accepted'` from a prior visit. It does not fire unconditionally on page load.
