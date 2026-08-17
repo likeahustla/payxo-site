@@ -54,9 +54,12 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   a{ color:var(--lime); text-decoration:none; }
   a:hover{ color:var(--lime-hover); }
   header{ border-bottom:1px solid var(--line-soft); }
-  .nav-in{ max-width:840px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-in{ max-width:840px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
   .logo{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:22px; color:var(--milk); }
   .logo span{ color:var(--lime); }
+  .crumbs{ font-size:13px; color:var(--dim); }
+  .crumbs a{ color:var(--dim2); }
+  .crumbs a:hover{ color:var(--lime); }
   .btn-outline{ border:1.5px solid var(--line); color:var(--milk); font-weight:600; font-size:14px; padding:10px 20px; border-radius:999px; transition:border-color .2s, color .2s; }
   .btn-outline:hover{ border-color:var(--lime); color:var(--lime); }
 
@@ -161,12 +164,18 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
           {
             "@type": "ListItem",
             "position": 6,
+            "url": "https://payxo.ru/guides/capcut/",
+            "name": "Как оплатить CapCut Pro через PayXO"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
             "url": "https://payxo.ru/guides/smena-regiona-appstore/",
             "name": "Как сменить регион App Store"
           },
           {
             "@type": "ListItem",
-            "position": 7,
+            "position": 8,
             "url": "https://payxo.ru/guides/spisanie-ostatka-apple/",
             "name": "Как списать остаток с баланса Apple"
           }
@@ -181,6 +190,7 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   <header>
     <div class="nav-in">
       <a href="../" class="logo">Pay<span>XO</span></a>
+      <span class="crumbs"><a href="../">Главная</a> / Гайды</span>
       <a href="../" class="btn-outline">← На главную</a>
     </div>
   </header>
@@ -231,6 +241,14 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
         <div class="guide-tag">Подписки</div>
         <h3>Как оплатить iCloud+ через PayXO</h3>
         <p>Пополнение баланса Apple ID вашего региона и подключение тарифа iCloud+ в настройках iPhone — без смены региона.</p>
+      </a>
+      <a class="guide-card" href="./capcut/">
+        <div class="guide-icons">
+          <div class="guide-icon"><img class="tile" src="../icons/capcut.png" alt="CapCut" /></div>
+        </div>
+        <div class="guide-tag">Подписки</div>
+        <h3>Как оплатить CapCut Pro через PayXO</h3>
+        <p>Пополнение Apple ID и оформление подписки Pro или Ultra в приложении CapCut.</p>
       </a>
       <a class="guide-card" href="./smena-regiona-appstore/">
         <div class="guide-icons">
