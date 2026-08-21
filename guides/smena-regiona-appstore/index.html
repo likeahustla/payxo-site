@@ -81,7 +81,14 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
 
   .warn{ margin-top:32px; background:var(--card); border:1px solid var(--card-border); border-left:3px solid var(--lime); border-radius:12px; padding:16px 20px; color:var(--dim2); font-size:14px; line-height:1.6; }
 
-  .fillcard{ margin-top:16px; background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:8px 20px; }
+  .fill-tabs-block{ margin-top:24px; }
+  .fill-tabs-block > .fillcard-title{ padding:0 0 12px; }
+  .fill-tabs{ display:flex; gap:8px; }
+  .fill-tab{ flex:1; display:inline-flex; align-items:center; justify-content:center; gap:8px; background:var(--card); border:1.5px solid var(--card-border); color:var(--dim2); font-family:'Onest',sans-serif; font-weight:600; font-size:14px; padding:12px 16px; border-radius:12px; cursor:pointer; transition:border-color .2s, color .2s, background .2s; }
+  .fill-tab:hover{ border-color:var(--line); color:var(--milk); }
+  .fill-tab.active{ border-color:var(--lime); color:var(--lime); background:var(--ink); }
+  .fillcard[hidden]{ display:none; }
+  .fillcard{ margin-top:12px; background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:8px 20px; }
   .fillcard-title{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:15px; padding:16px 0 12px; }
   .fill-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid var(--line-soft); }
   .fill-label{ color:var(--dim); font-size:13px; flex:0 0 auto; min-width:120px; }
@@ -222,11 +229,16 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
       <li>Нажмите <b>«Изменить страну или регион»</b>.</li>
       <li>Выберите новую страну или регион, затем просмотрите положения и условия.</li>
       <li>Нажмите <b>«Принимаю»</b> в верхнем правом углу, затем снова нажмите <b>«Принимаю»</b> для подтверждения.</li>
-      <li>На экране «Дополните Apple ID» в качестве способа оплаты выберите <b>«Нет»</b> — карта не нужна. Заполните получателя счёта и адрес (можно скопировать пример ниже) и нажмите <b>«Далее»</b>.</li>
+      <li>На экране «Дополните Apple ID» в качестве способа оплаты выберите <b>«Нет»</b> — карта не нужна. Заполните получателя счёта и адрес (ниже — готовые примеры для США и Турции, переключайте вкладки) и нажмите <b>«Далее»</b>.</li>
     </ol>
 
-    <div class="fillcard">
-      <div class="fillcard-title">Что вписать на экране «Дополните Apple ID» — регион США</div>
+    <div class="fill-tabs-block">
+      <div class="fillcard-title">Что вписать на экране «Дополните Apple ID»</div>
+      <div class="fill-tabs" role="tablist" aria-label="Выберите регион">
+        <button class="fill-tab active" type="button" role="tab" aria-selected="true" data-tab="us">🇺🇸 США</button>
+        <button class="fill-tab" type="button" role="tab" aria-selected="false" data-tab="tr">🇹🇷 Турция</button>
+      </div>
+    <div class="fillcard" data-panel="us" role="tabpanel">
       <div class="fill-row">
         <span class="fill-label">Способ оплаты</span>
         <span class="fill-value">Нет</span>
@@ -240,8 +252,7 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
       <div class="fill-row"><span class="fill-label">Индекс</span><span class="fill-value" data-copy="99901">99901</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
       <div class="fill-row"><span class="fill-label">Телефон</span><span class="fill-value" data-copy="907 2259273">907 2259273</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
     </div>
-    <div class="fillcard">
-      <div class="fillcard-title">Что вписать на экране «Дополните Apple ID» — регион Турция</div>
+    <div class="fillcard" data-panel="tr" role="tabpanel" hidden>
       <div class="fill-row">
         <span class="fill-label">Способ оплаты</span>
         <span class="fill-value">Нет</span>
@@ -255,6 +266,7 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
       <div class="fill-row"><span class="fill-label">Телефон</span><span class="fill-value" data-copy="5411909412">+90 5411909412</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
       <div class="fill-hint">Код страны «90» в форме уже подставлен — в поле номера вводите только цифры после него. Вторая строка «Улица» — необязательная, оставьте пустой.</div>
       <div class="fill-row"><span class="fill-label">Страна/регион</span><span class="fill-value" data-copy="Türkiye">Türkiye</span><button class="copy-btn" type="button" aria-label="Копировать"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+    </div>
     </div>
     <p class="warn">Это примеры адресов реальных населённых пунктов (Кетчикан, Аляска — для США; Стамбул — для Турции) — только чтобы форма приняла корректный набор город/индекс. Никакая доставка по нему не происходит: способ оплаты «Нет» — карта не привязывается и не списывается.</p>
 
@@ -275,6 +287,15 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
 
 <script>
 (function(){
+  var tabs = document.querySelectorAll('.fill-tab');
+  var panels = document.querySelectorAll('.fillcard[data-panel]');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var key = tab.getAttribute('data-tab');
+      tabs.forEach(function(t){ var on = t === tab; t.classList.toggle('active', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      panels.forEach(function(p){ p.hidden = p.getAttribute('data-panel') !== key; });
+    });
+  });
   document.querySelectorAll('.copy-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
       var value = btn.previousElementSibling.getAttribute('data-copy');
