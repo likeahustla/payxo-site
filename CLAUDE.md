@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Static marketing site for **PayXO** (payxo.ru), served via GitHub Pages (`CNAME` → `payxo.ru`, repo `likeahustla/payxo-site`, **public**). The site drives traffic to the Telegram bot `@payxo_bot`, which sells gift cards and digital codes (ChatGPT, Claude, Suno, iCloud+, Steam, Telegram Premium, etc.) — typically via Apple ID balance top-ups so buyers pay in rubles by SBP and activate in the vendor's own app, no card/FX fees. Legal entity: ИП Султанова Фатима Салмановна.
+Static marketing site for **PayXO** (payxo.ru), served via GitHub Pages (`CNAME` → `payxo.ru`, repo `likeahustla/payxo-site`, **public**). The site drives traffic to the Telegram bot `@payxo_bot`, which sells gift cards, digital codes (ChatGPT, Claude, Suno, iCloud+, Steam, Telegram Premium, etc.) and fixed-denomination virtual VISA cards — typically via Apple ID balance top-ups so buyers pay in rubles by SBP and activate in the vendor's own app, no card/FX fees. Legal entity: ИП Султанова Фатима Салмановна.
 
 ## Commands
 
