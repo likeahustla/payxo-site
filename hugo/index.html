@@ -129,6 +129,31 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   .sc.top .y b{ color:var(--lime-ink); }
   .fine{ margin-top:18px; font-size:14px; color:var(--dim); max-width:52em; }
 
+
+  .about{ border-top:0; padding-block:0 56px; }
+  .about-card{ position:relative; overflow:hidden; display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(24px,4vw,56px); align-items:center; background:radial-gradient(120% 90% at 100% 0%, rgba(214,244,47,.16), transparent 55%), var(--card); border:1px solid var(--card-border); border-radius:32px; padding:clamp(24px,4.5vw,52px); }
+  .about-facts{ list-style:none; margin:32px 0 0; padding:0; display:grid; gap:18px; }
+  .about-facts li{ display:flex; gap:16px; align-items:flex-start; }
+  .about-facts .chip{ flex:none; width:44px; height:44px; border-radius:14px; display:grid; place-items:center; background:rgba(214,244,47,.12); border:1px solid rgba(214,244,47,.35); color:var(--lime); }
+  .about-facts b{ display:block; font-size:18px; font-weight:700; }
+  .about-facts span{ display:block; margin-top:2px; color:var(--dim2); font-size:15px; line-height:1.4; }
+  .about-visual{ display:grid; gap:16px; justify-items:center; }
+  .vcard{ width:100%; max-width:340px; aspect-ratio:1.586; border-radius:22px; padding:22px 24px; display:flex; flex-direction:column; justify-content:space-between; color:var(--lime-ink); background:linear-gradient(135deg,#E9FF6F 0%,#D6F42F 45%,#A9C81A 100%); box-shadow:0 24px 60px rgba(214,244,47,.18), inset 0 1px 0 rgba(255,255,255,.5); transform:rotate(-3deg); }
+  .vc-top,.vc-bot{ display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:13px; }
+  .vc-visa{ font-family:'Unbounded',sans-serif; font-weight:800; font-style:italic; font-size:22px; letter-spacing:-.02em; }
+  .vc-chip{ width:42px; height:30px; border-radius:7px; background:linear-gradient(135deg,rgba(11,11,14,.28),rgba(11,11,14,.1)); border:1px solid rgba(11,11,14,.25); }
+  .vc-num{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:clamp(16px,2.4vw,20px); letter-spacing:.06em; font-weight:600; }
+  .bubble{ width:100%; max-width:340px; background:var(--ink); border:1px solid var(--card-border); border-radius:18px 18px 18px 6px; padding:14px 16px; margin-left:-12px; }
+  .b-name{ color:var(--lime); font-weight:700; font-size:13px; }
+  .b-text{ margin-top:4px; font-size:14px; line-height:1.4; color:var(--milk); }
+  .services{ padding-top:56px; }
+  .svc-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(168px,1fr)); gap:10px; margin-top:32px; }
+  .svc{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--card-border); border-radius:18px; padding:10px 14px 10px 10px; transition:border-color .2s; }
+  .svc:hover{ border-color:var(--lime); }
+  .svc .ic{ flex:none; width:44px; height:44px; border-radius:12px; background:var(--ink); border:1px solid var(--card-border); display:grid; place-items:center; overflow:hidden; }
+  .svc .ic img{ width:100%; height:100%; object-fit:contain; display:block; }
+  .svc .mono{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:18px; color:var(--lime); }
+  .svc .nm{ font-weight:600; font-size:15px; line-height:1.2; overflow-wrap:anywhere; }
   .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:36px; }
   .card{ background:var(--card); border:1px solid var(--card-border); border-radius:24px; padding:28px; }
   .card h3{ font-size:22px; font-weight:700; letter-spacing:-.01em; line-height:1.2; }
@@ -163,11 +188,11 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   .cookie-banner[hidden]{ display:none; }
 
   @media (max-width:820px){
-    .steps,.scen,.grid2,.calc,.card.big,.facts{ grid-template-columns:1fr; }
+    .steps,.scen,.grid2,.calc,.card.big,.facts,.about-card{ grid-template-columns:1fr; }
     .scen{ grid-template-columns:1fr 1fr; }
     section{ padding-block:44px; }
   }
-  @media (max-width:430px){ body{ font-size:16px; } .scen{ grid-template-columns:1fr; } }
+  @media (max-width:430px){ body{ font-size:16px; } .scen{ grid-template-columns:1fr; } .svc-grid{ grid-template-columns:1fr 1fr; } .svc{ padding-right:10px; } .bubble{ margin-left:0; } }
 </style>
 <script type="application/ld+json">
 {
@@ -216,14 +241,81 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   </header>
 
   <section class="about">
-    <div class="eyebrow">Что такое PayXO</div>
-    <h2>Официальный Telegram-бот для оплаты ИИ-сервисов</h2>
-    <p class="sub">PayXO помогает людям из России быстро и законно оплачивать подписки на нейросети и другие цифровые сервисы. Выбрал сервис — оплатил картой или по СБП — получил реквизиты виртуальной карты VISA прямо в чат.</p>
-    <div class="facts">
-      <div class="fact"><b>Telegram</b><span>Всё в одном боте, без сторонних сайтов</span></div>
-      <div class="fact"><b>Официально</b><span>ИП, публичная оферта, чек на каждую покупку</span></div>
-      <div class="fact"><b>Быстро</b><span>Реквизиты виртуальной карты VISA приходят в чат сразу после оплаты</span></div>
+    <div class="about-card">
+      <div class="about-copy">
+        <div class="eyebrow">Что такое PayXO</div>
+        <h2>Официальный Telegram-бот для оплаты ИИ-сервисов</h2>
+        <p class="sub">PayXO помогает людям из России быстро и законно оплачивать подписки на нейросети и другие цифровые сервисы. Выбрал сервис — оплатил картой или по СБП — получил реквизиты виртуальной карты VISA прямо в чат.</p>
+        <ul class="about-facts">
+          <li>
+            <span class="chip"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 3 10.5l6 2.5 2.5 6L21 3Z"/><path d="m9 13 12-10"/></svg></span>
+            <div><b>Всё в Telegram</b><span>Один бот вместо сторонних сайтов и переписок с продавцами</span></div>
+          </li>
+          <li>
+            <span class="chip"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8 7.5 9.5 4.3-1.5 7.5-5 7.5-9.5V6L12 3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg></span>
+            <div><b>Официально</b><span>ИП, публичная оферта, фискальный чек на каждую покупку</span></div>
+          </li>
+          <li>
+            <span class="chip"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></span>
+            <div><b>Быстро</b><span>Реквизиты виртуальной карты VISA приходят в чат сразу после оплаты</span></div>
+          </li>
+        </ul>
+      </div>
+      <div class="about-visual" aria-hidden="true">
+        <div class="vcard">
+          <div class="vc-top"><span class="vc-label">Виртуальная карта</span><span class="vc-visa">VISA</span></div>
+          <div class="vc-chip"></div>
+          <div class="vc-num">•••• •••• •••• ••••</div>
+          <div class="vc-bot"><span>PayXO</span><span>••/••</span></div>
+        </div>
+        <div class="bubble">
+          <div class="b-name">PayXO</div>
+          <div class="b-text">Оплата получена. Реквизиты вашей виртуальной карты VISA — ниже.</div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <section class="services">
+    <div class="eyebrow">Что можно оплатить</div>
+    <h2>Популярные ИИ-сервисы — в одном боте</h2>
+    <p class="sub">Оплачивайте подписки и тарифы любых из этих сервисов — прямо из Telegram, в рублях.</p>
+    <div class="svc-grid">
+      <div class="svc"><span class="ic"><img src="../icons/ai/chatgpt.svg" alt="" width="44" height="44" loading="lazy"></span><span class="nm">ChatGPT</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/claude.svg" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Claude</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/midjourney.svg" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Midjourney</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/higgsfield.svg" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Higgsfield</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/suno.svg" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Suno</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/elevenlabs.svg" alt="" width="44" height="44" loading="lazy"></span><span class="nm">ElevenLabs</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/kling.png" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Kling AI</span></div>
+      <div class="svc"><span class="ic"><span class="mono">S</span></span><span class="nm">Seedance</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/perplexity.svg" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Perplexity</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/cursor.png" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Cursor</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/grok.png" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Grok</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/lovable.svg" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Lovable</span></div>
+      <div class="svc"><span class="ic"><img src="../icons/ai/gamma-app.png" alt="" width="44" height="44" loading="lazy"></span><span class="nm">Gamma</span></div>
+      <div class="svc"><span class="ic"><span class="mono">I</span></span><span class="nm">Ideogram</span></div>
+      <div class="svc"><span class="ic"><span class="mono">K</span></span><span class="nm">Krea</span></div>
+      <div class="svc"><span class="ic"><span class="mono">M</span></span><span class="nm">Magnific</span></div>
+      <div class="svc"><span class="ic"><span class="mono">H</span></span><span class="nm">Hedra</span></div>
+      <div class="svc"><span class="ic"><span class="mono">C</span></span><span class="nm">Character.AI</span></div>
+      <div class="svc"><span class="ic"><span class="mono">C</span></span><span class="nm">Clipdrop</span></div>
+      <div class="svc"><span class="ic"><span class="mono">D</span></span><span class="nm">D-ID</span></div>
+      <div class="svc"><span class="ic"><span class="mono">D</span></span><span class="nm">Dzine</span></div>
+      <div class="svc"><span class="ic"><span class="mono">F</span></span><span class="nm">fal.ai</span></div>
+      <div class="svc"><span class="ic"><span class="mono">F</span></span><span class="nm">Fireflies.ai</span></div>
+      <div class="svc"><span class="ic"><span class="mono">F</span></span><span class="nm">Flair</span></div>
+      <div class="svc"><span class="ic"><span class="mono">F</span></span><span class="nm">Flora</span></div>
+      <div class="svc"><span class="ic"><span class="mono">G</span></span><span class="nm">Genspark</span></div>
+      <div class="svc"><span class="ic"><span class="mono">H</span></span><span class="nm">HeyBoss</span></div>
+      <div class="svc"><span class="ic"><span class="mono">J</span></span><span class="nm">JetBrains AI</span></div>
+      <div class="svc"><span class="ic"><span class="mono">K</span></span><span class="nm">Kimi AI</span></div>
+      <div class="svc"><span class="ic"><span class="mono">L</span></span><span class="nm">Lovart</span></div>
+      <div class="svc"><span class="ic"><span class="mono">O</span></span><span class="nm">Otter.ai</span></div>
+      <div class="svc"><span class="ic"><span class="mono">B</span></span><span class="nm">Bluedot AI</span></div>
+      <div class="svc"><span class="ic"><span class="mono">C</span></span><span class="nm">Captions</span></div>
+    </div>
+    <p class="fine">Полный и актуальный список сервисов — в боте PayXO.</p>
   </section>
 
   <section>
@@ -340,8 +432,7 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
 
       <div class="card">
         <h3>Ученикам это действительно нужно</h3>
-        <p>Чтобы применять то, чему вы учите, нужны подписки на нейросети. Мы закрываем именно эту задачу.</p>
-        <div class="pills"><span>ChatGPT</span><span>Claude</span><span>Midjourney</span><span>Higgsfield</span><span>Suno</span><span>ElevenLabs</span><span>Kling AI</span><span>Seedance</span><span>и другие</span></div>
+        <p>Чтобы применять то, чему вы учите, нужны подписки на нейросети — ChatGPT, Claude, Midjourney, Kling AI, Seedance и другие. Мы закрываем именно эту задачу.</p>
       </div>
     </div>
   </section>
