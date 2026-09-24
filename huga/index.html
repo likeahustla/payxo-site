@@ -171,7 +171,9 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
 
   .cta{ border:1px solid var(--lime); border-radius:36px; padding:clamp(28px,5vw,56px); background:var(--card); margin-top:24px; }
   .cta .lead2{ font-family:'Unbounded',sans-serif; font-weight:600; font-size:clamp(18px,2.6vw,26px); line-height:1.3; max-width:24em; }
-  .cta .btn-lime{ margin-top:28px; }
+  .cta-btns{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; }
+  .btn-lime.btn-ghost{ background:transparent; color:var(--lime); box-shadow:inset 0 0 0 2px var(--lime); }
+  .btn-lime.btn-ghost:hover{ background:rgba(214,244,47,.12); color:var(--lime-hover); }
 
   footer{ border-top:1px solid var(--line-soft); }
   .foot-in{ max-width:1200px; margin:0 auto; padding:32px 24px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
@@ -442,8 +444,10 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   </section>
 
   <section class="cta" id="start">
-    <p class="lead2">Откройте бот и напишите нам — выдадим личную ссылку и подключим канал поддержки в тот же день.</p>
-    <a class="btn-lime" href="https://t.me/payxo_bot" target="_blank" rel="noopener" data-analytics="hugo">Открыть бот PayXO</a>
+    <div class="cta-btns">
+      <a class="btn-lime" href="https://t.me/payxo_bot" target="_blank" rel="noopener" data-analytics="hugo">Открыть бот</a>
+      <a class="btn-lime btn-ghost" href="https://t.me/papichuloooo" target="_blank" rel="noopener">Напишите нам</a>
+    </div>
   </section>
 </div>
 
