@@ -26,9 +26,11 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
 <link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png" />
 <title>Условия использования карты — PayXO</title>
 <meta name="description" content="Условия использования виртуальной предоплаченной карты Visa из бота PayXO: где работает, комиссии эмитента, запреты, претензии." />
-<meta name="robots" content="index, follow, max-image-preview:large" />
+<!-- Только по прямой ссылке из бота: не индексируется, в sitemap и на сайте не упоминается. -->
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta name="googlebot" content="noindex, nofollow" />
+<meta name="yandex" content="noindex, nofollow" />
 <meta name="author" content="PayXO" />
-<link rel="canonical" href="https://payxo.ru/legal/karta-usloviya/" />
 <meta property="og:title" content="Условия использования карты — PayXO" />
 <meta property="og:description" content="Условия использования виртуальной предоплаченной карты Visa из бота PayXO: где работает, комиссии эмитента, запреты, претензии." />
 <meta property="og:type" content="article" />
@@ -94,22 +96,6 @@ if (localStorage.getItem('payxo_cookie_consent') === 'accepted') { window.payxoI
   .cookie-banner .btn-outline{ background:var(--ink); color:var(--lime); border-color:var(--line); }
   .cookie-banner[hidden]{ display:none; }
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {"@type": "Organization", "name": "PayXO", "url": "https://payxo.ru/",
-      "logo": {"@type": "ImageObject", "url": "https://payxo.ru/icons/favicon-512x512.png"},
-      "sameAs": ["https://t.me/payxo_bot"]},
-    {"@type": "BreadcrumbList", "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://payxo.ru/"},
-      {"@type": "ListItem", "position": 2, "name": "Правовые документы", "item": "https://payxo.ru/legal/"},
-      {"@type": "ListItem", "position": 3, "name": "Условия использования карты", "item": "https://payxo.ru/legal/karta-usloviya/"}]},
-    {"@type": "WebPage", "name": "Условия использования карты", "description": "Условия использования виртуальной предоплаченной карты Visa из бота PayXO: где работает, комиссии эмитента, запреты, претензии.", "url": "https://payxo.ru/legal/karta-usloviya/", "inLanguage": "ru-RU",
-      "dateModified": "2026-10-05", "isPartOf": {"@type": "CollectionPage", "name": "Правовые документы PayXO", "url": "https://payxo.ru/legal/"}}
-  ]
-}
-</script>
 </head>
 <body>
   <header>
