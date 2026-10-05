@@ -25,6 +25,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://payxo.ru/guides/chatgpt-visa/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://payxo.ru/guides/claude/</loc>
     <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>

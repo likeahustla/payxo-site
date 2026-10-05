@@ -8,6 +8,7 @@ PayXO продаёт пополнение баланса Apple ID нужного
 
 - [Как оплачивать зарубежные подписки из России](https://payxo.ru/guides/kak-oplatit-zarubezhnye-servisy/): почему российские карты не работают, и три способа оплаты через PayXO: пополнение баланса App Store, виртуальная карта VISA с фиксированным номиналом и гифт-карты.
 - [Как оплатить подписку ChatGPT через PayXO](https://payxo.ru/guides/chatgpt/): пополнение Apple ID нужного региона и оформление подписки ChatGPT в официальном приложении.
+- [Как оплатить ChatGPT картой VISA](https://payxo.ru/guides/chatgpt-visa/): ваучер — зарубежная карта VISA под тариф ChatGPT Go, Plus или Pro; реквизиты приходят в чат бота, оплата подписки на сайте ChatGPT.
 - [Как оплатить подписку Claude через PayXO](https://payxo.ru/guides/claude/): пополнение Apple ID нужного региона и оформление подписки Claude Pro или Max в официальном приложении Claude.
 - [Как оплатить подписку Suno через PayXO](https://payxo.ru/guides/suno/): пополнение Apple ID нужного региона и оформление подписки Suno Pro или Premier.
 - [Как оплатить iCloud+ через PayXO](https://payxo.ru/guides/icloud/): пополнение баланса Apple ID своего региона и подключение тарифа iCloud+ без смены региона.
